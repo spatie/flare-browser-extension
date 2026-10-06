@@ -39,13 +39,13 @@
   box-shadow: 0 2px 5px rgba(34, 34, 47, .1);
 }
 
-.flare-extension-action[data-state="setup"] .flare-extension-split {
+.flare-extension-action:is([data-state="setup"], [data-state="disconnected"]) .flare-extension-split {
   border-color: #d2d3d9;
   background: #f8f8fa;
   box-shadow: none;
 }
 
-.flare-extension-action[data-state="setup"] .flare-extension-split:hover {
+.flare-extension-action:is([data-state="setup"], [data-state="disconnected"]) .flare-extension-split:hover {
   border-color: #bdbec8;
   background: #f3f3f6;
 }
@@ -81,17 +81,17 @@
   text-decoration: none;
 }
 
-.flare-extension-action[data-state="setup"] .flare-extension-main {
+.flare-extension-action:is([data-state="setup"], [data-state="disconnected"]) .flare-extension-main {
   min-width: 114px;
   color: #62656e;
 }
 
-.flare-extension-action[data-state="setup"] .flare-extension-main:hover,
-.flare-extension-action[data-state="setup"] .flare-extension-main:visited {
+.flare-extension-action:is([data-state="setup"], [data-state="disconnected"]) .flare-extension-main:hover,
+.flare-extension-action:is([data-state="setup"], [data-state="disconnected"]) .flare-extension-main:visited {
   color: #4e515b;
 }
 
-.flare-extension-action[data-state="setup"] .flare-extension-mark {
+.flare-extension-action:is([data-state="setup"], [data-state="disconnected"]) .flare-extension-mark {
   filter: grayscale(1);
   opacity: .68;
 }

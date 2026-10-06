@@ -16,7 +16,7 @@ Detailed description:
 >
 > Connect your account using Flare's read-only OAuth flow. The extension reads the project name from the Laravel Cloud URL and sends it to flareapp.io to find a match. It does not read application code or Laravel Cloud credentials.
 >
-> Before you connect, the main button opens your Flare project list.
+> Before you connect, the button says Connect Flare and opens the extension settings.
 
 Single purpose: Link a Laravel Cloud project to its matching Flare Errors, Performance, and Logs pages.
 
@@ -30,7 +30,7 @@ Remote code: None. The extension loads fonts and scripts from its own package an
 
 Data disclosure: The extension reads the Laravel Cloud project name from the URL and sends it to Flare for matching. It stores Flare OAuth tokens locally and sends them only to Flare. See [PRIVACY.md](../PRIVACY.md).
 
-Test instructions: Open the toolbar icon and choose Connect to Flare. Allow flareapp.io access, sign in or create a Flare account, and approve the device code. On a Laravel Cloud project page, allow cloud.laravel.com access. The main Flare button opens Errors for a matching project; the menu opens Performance and Logs. Without a match, Set up Flare opens the create-project dialog. Before connection, the main button opens the Flare project list.
+Test instructions: Open the toolbar icon and choose Connect to Flare. Allow flareapp.io access, sign in or create a Flare account, and approve the device code. On a Laravel Cloud project page, allow cloud.laravel.com access. The main Flare button opens Errors for a matching project; the menu opens Performance and Logs. Without a match, Set up Flare opens the create-project dialog. Before connection, Connect Flare opens the extension settings.
 
 Homepage: https://flareapp.io
 
