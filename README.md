@@ -1,6 +1,6 @@
 # Flare browser extension
 
-![Flare button with Errors and Performance in Laravel Cloud](docs/flare-cloud-actions.jpg)
+![Flare button with Errors and Performance in Laravel Cloud](docs/flare-cloud-actions.png)
 
 Adds a Flare button immediately to the right of **Deploy** on Laravel Cloud. Connect the extension to Flare using its toolbar icon. For a matching project, the main button opens Flare Errors and its menu offers Errors and Performance. When no project matches, **Set up Flare** opens the Laravel installation guide. When the extension is disconnected, **Connect Flare** opens its settings.
 

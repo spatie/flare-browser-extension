@@ -34,7 +34,7 @@
   --brand-soft: #ede9fe;
   --brand-solid: linear-gradient(180deg, #8b5cf6 0%, #6d28d9 100%);
   --success: #12b981;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: Satoshi, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--fg);
   -webkit-font-smoothing: antialiased;
 }
@@ -46,7 +46,6 @@ body { min-height: 100vh; margin: 0; background: var(--canvas); }
 .brand { display: flex; align-items: center; gap: 10px; }
 .mark { width: 22px; height: 34px; flex: none; }
 .wordmark { font-family: Satoshi, sans-serif; font-size: 24px; font-weight: 900; letter-spacing: -.055em; }
-.masthead-label { color: var(--fg-muted); font-size: 12px; font-weight: 500; }
 .panel { overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: 0 10px 32px rgba(30, 41, 59, .045), 0 2px 5px rgba(30, 41, 59, .025); }
 .panel-heading { padding: 30px 34px 28px; }
 h1 { margin: 0 0 6px; font-family: Satoshi, sans-serif; font-size: 30px; font-weight: 700; line-height: 1.2; letter-spacing: -.035em; text-wrap: balance; }
@@ -87,7 +86,6 @@ button:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
 .spinner { width: 13px; height: 13px; border: 2px solid var(--line); border-top-color: var(--brand); border-radius: 50%; animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .error { margin: 0; padding: 13px 34px; border-top: 1px solid #fecaca; background: #fee9e9; color: #991b1b; font-size: 12px; line-height: 1.6; }
-.footer { margin: 18px 0 0; color: var(--fg-muted); font-size: 12px; text-align: center; }
 [hidden] { display: none !important; }
 
 @media (max-width: 520px) {
