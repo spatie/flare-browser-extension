@@ -2,7 +2,7 @@
 
 ![Flare button with Errors and Performance in Laravel Cloud](docs/flare-cloud-actions.png)
 
-Adds a Flare button immediately to the right of **Deploy** on Laravel Cloud. Connect the extension to Flare using its toolbar icon. For a matching project, the main button opens Flare Errors and its menu offers Errors, Performance, and Logs. When no project matches, **Set up Flare** opens the Laravel installation guide. When the extension is disconnected, **Connect Flare** opens its settings.
+Adds a Flare button immediately to the right of **Deploy** on Laravel Cloud. Connect the extension to Flare using its toolbar icon. For a matching project, the main button opens Flare Errors and its menu offers Errors, Performance, and Logs. When no project matches, **Set up Flare** opens the create-project dialog with the Cloud project name filled in. When the extension is disconnected, **Connect Flare** opens its settings.
 
 The connection uses Flare's read-only OAuth device flow. The extension stores the access and refresh tokens in browser extension storage, keeps them out of the Laravel Cloud page, and revokes them when you disconnect. Flare matches an exact allowed domain first, then an exact project name or slug.
 

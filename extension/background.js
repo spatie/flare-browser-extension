@@ -116,7 +116,7 @@ async function startAuthorization() {
     client_id: CLIENT_ID,
     scope: "read",
     resource: `${FLARE_ORIGIN}/api`,
-    connection_name: "Laravel Cloud browser extension",
+    connection_name: "Flare",
   });
 
   if (!result.ok || !result.body.device_code) {

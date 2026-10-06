@@ -3,7 +3,6 @@
   const actionClass = "flare-extension-action";
   const menuClass = "flare-extension-menu";
   const flareUrl = "https://flareapp.io/";
-  const installationUrl = "https://flareapp.io/docs/laravel/general/installation";
   const mark = `
     <svg class="flare-extension-mark" viewBox="0 0 42 64" fill="none" aria-hidden="true">
       <path fill="url(#flare-extension-green-side)" d="M13.73 31.985 0 23.997V7.99l13.82 8.047-.088 15.948h-.002Z"/>
@@ -22,7 +21,6 @@
     errors: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M10 6v4m0 3h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
     performance: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 4v11.5c0 .6.4 1 1 1H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="m6 12 3-3 2.5 2 3.5-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     logs: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="4" y="2.75" width="12" height="14.5" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 7h6M7 10h6M7 13h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
-    guide: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 3.5h6l3 3v10H6a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5"/><path d="M11.5 3.5V7H15M7 10h5M7 13h5" stroke="currentColor" stroke-width="1.4"/></svg>',
     settings: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 7v6M7 10h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
   };
 
@@ -49,6 +47,14 @@
     } catch {
       return "";
     }
+  }
+
+  function createProjectUrl(project) {
+    const url = new URL("/projects", flareUrl);
+    url.searchParams.set("new-project", "1");
+    url.searchParams.set("name", project);
+    url.searchParams.set("technology", "Laravel");
+    return url.href;
   }
 
   function closeMenu(restoreFocus = false) {
@@ -120,8 +126,8 @@
         { label: "Logs", icon: "logs", href: view.logsUrl },
       ];
     } else if (view.kind === "setup") {
-      copy = "No matching Flare project is available. Create or connect one, then follow the Laravel installation guide.";
-      items = [{ label: "Installation guide", icon: "guide", href: installationUrl }];
+      copy = "No matching Flare project exists yet. Create one for this Laravel Cloud project.";
+      items = [{ label: "Create Flare project", icon: "settings", href: view.createUrl }];
     } else if (view.kind === "disconnected") {
       copy = "Connect your Flare account to find this project.";
       items = [{ label: "Connection settings", icon: "settings", action: "settings" }];
@@ -145,7 +151,7 @@
     const hidden = hideUnmatchedAction && view.kind === "setup";
     if (hidden && activeMenu === instance) closeMenu();
     instance.wrap.hidden = hidden;
-    const key = `${view.kind}:${view.errorsUrl || ""}:${view.performanceUrl || ""}:${view.logsUrl || ""}`;
+    const key = [view.kind, view.errorsUrl, view.performanceUrl, view.logsUrl, view.createUrl].join(":");
     if (instance.wrap.dataset.renderKey === key) return;
     if (activeMenu === instance) closeMenu();
     instance.wrap.dataset.renderKey = key;
@@ -155,11 +161,15 @@
     const title = view.kind === "matched"
       ? `Open ${view.name} Errors on Flare in a new tab`
       : view.kind === "setup"
-        ? "Open the Flare Laravel installation guide in a new tab"
+        ? `Create a Flare project for ${view.name} in a new tab`
         : view.kind === "disconnected"
           ? "Connect your Flare account"
           : "Open Flare in a new tab";
-    instance.main.href = view.kind === "matched" ? view.errorsUrl : view.kind === "setup" ? installationUrl : view.kind === "disconnected" ? "#" : flareUrl;
+    instance.main.href = view.kind === "matched"
+      ? view.errorsUrl
+      : view.kind === "setup"
+        ? view.createUrl
+        : view.kind === "disconnected" ? "#" : flareUrl;
     instance.main.target = view.kind === "disconnected" ? "" : "_blank";
     instance.main.rel = view.kind === "disconnected" ? "" : "noopener noreferrer";
     instance.main.setAttribute("aria-label", title);
@@ -299,7 +309,9 @@
       if (!result?.connected) setView({ kind: "disconnected" });
       else if (result.match?.url && result.match?.performanceUrl && result.match?.logsUrl) {
         setView({ kind: "matched", name: result.match.name, errorsUrl: result.match.url, performanceUrl: result.match.performanceUrl, logsUrl: result.match.logsUrl });
-      } else setView({ kind: "setup" });
+      } else {
+        setView({ kind: "setup", name: project, createUrl: createProjectUrl(project) });
+      }
     } catch {
       if (generation !== resolveGeneration || project !== cloudProject()) return;
       setView({ kind: "error" });
