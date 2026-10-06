@@ -1,0 +1,613 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 110;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9582F4583074C80E00E5A2EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9582F4573074C80E00E5A2EF /* AppDelegate.swift */; };
+		9582F45C3074C80E00E5A2EF /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 9582F45A3074C80E00E5A2EF /* Main.html */; };
+		9582F45E3074C80E00E5A2EF /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9582F45D3074C80E00E5A2EF /* Icon.png */; };
+		9582F4603074C80E00E5A2EF /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 9582F45F3074C80E00E5A2EF /* Style.css */; };
+		9582F4623074C80E00E5A2EF /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4613074C80E00E5A2EF /* Script.js */; };
+		9582F4643074C80E00E5A2EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9582F4633074C80E00E5A2EF /* ViewController.swift */; };
+		9582F4673074C80E00E5A2EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4653074C80E00E5A2EF /* Main.storyboard */; };
+		9582F4693074C80F00E5A2EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4683074C80F00E5A2EF /* Assets.xcassets */; };
+		9582F4703074C80F00E5A2EF /* Flare for Laravel Cloud Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9582F46F3074C80F00E5A2EF /* Flare for Laravel Cloud Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9582F4753074C80F00E5A2EF /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9582F4743074C80F00E5A2EF /* SafariWebExtensionHandler.swift */; };
+		9582F48B3074C80F00E5A2EF /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4813074C80F00E5A2EF /* styles.css */; };
+		9582F48C3074C80F00E5A2EF /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4823074C80F00E5A2EF /* background.js */; };
+		9582F48D3074C80F00E5A2EF /* dev-reload.js in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4833074C80F00E5A2EF /* dev-reload.js */; };
+		9582F48E3074C80F00E5A2EF /* settings.css in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4843074C80F00E5A2EF /* settings.css */; };
+		9582F48F3074C80F00E5A2EF /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4853074C80F00E5A2EF /* icons */; };
+		9582F4903074C80F00E5A2EF /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4863074C80F00E5A2EF /* manifest.json */; };
+		9582F4913074C80F00E5A2EF /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4873074C80F00E5A2EF /* content.js */; };
+		9582F4923074C80F00E5A2EF /* settings.html in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4883074C80F00E5A2EF /* settings.html */; };
+		9582F4933074C80F00E5A2EF /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4893074C80F00E5A2EF /* fonts */; };
+		9582F4943074C80F00E5A2EF /* settings.js in Resources */ = {isa = PBXBuildFile; fileRef = 9582F48A3074C80F00E5A2EF /* settings.js */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9582F4713074C80F00E5A2EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9582F44C3074C80E00E5A2EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9582F46E3074C80F00E5A2EF;
+			remoteInfo = "Flare for Laravel Cloud Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9582F47C3074C80F00E5A2EF /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = PlugIns;
+			files = (
+				9582F4703074C80F00E5A2EF /* Flare for Laravel Cloud Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9582F4543074C80E00E5A2EF /* Flare for Laravel Cloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flare for Laravel Cloud.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9582F4573074C80E00E5A2EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9582F45B3074C80E00E5A2EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
+		9582F45D3074C80E00E5A2EF /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		9582F45F3074C80E00E5A2EF /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		9582F4613074C80E00E5A2EF /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		9582F4633074C80E00E5A2EF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9582F4663074C80E00E5A2EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9582F4683074C80F00E5A2EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9582F46A3074C80F00E5A2EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9582F46F3074C80F00E5A2EF /* Flare for Laravel Cloud Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Flare for Laravel Cloud Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9582F4743074C80F00E5A2EF /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		9582F4763074C80F00E5A2EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9582F4813074C80F00E5A2EF /* styles.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = styles.css; path = ../../../extension/styles.css; sourceTree = "<group>"; };
+		9582F4823074C80F00E5A2EF /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = ../../../extension/background.js; sourceTree = "<group>"; };
+		9582F4833074C80F00E5A2EF /* dev-reload.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "dev-reload.js"; path = "../../../extension/dev-reload.js"; sourceTree = "<group>"; };
+		9582F4843074C80F00E5A2EF /* settings.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = settings.css; path = ../../../extension/settings.css; sourceTree = "<group>"; };
+		9582F4853074C80F00E5A2EF /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = ../../../extension/icons; sourceTree = "<group>"; };
+		9582F4863074C80F00E5A2EF /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../../extension/manifest.json; sourceTree = "<group>"; };
+		9582F4873074C80F00E5A2EF /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = content.js; path = ../../../extension/content.js; sourceTree = "<group>"; };
+		9582F4883074C80F00E5A2EF /* settings.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = settings.html; path = ../../../extension/settings.html; sourceTree = "<group>"; };
+		9582F4893074C80F00E5A2EF /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = ../../../extension/fonts; sourceTree = "<group>"; };
+		9582F48A3074C80F00E5A2EF /* settings.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = settings.js; path = ../../../extension/settings.js; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9582F4513074C80E00E5A2EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		9582F46C3074C80F00E5A2EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9582F44B3074C80E00E5A2EF = {
+			isa = PBXGroup;
+			children = (
+				9582F4563074C80E00E5A2EF /* Flare for Laravel Cloud */,
+				9582F4733074C80F00E5A2EF /* Flare for Laravel Cloud Extension */,
+				9582F4553074C80E00E5A2EF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9582F4553074C80E00E5A2EF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9582F4543074C80E00E5A2EF /* Flare for Laravel Cloud.app */,
+				9582F46F3074C80F00E5A2EF /* Flare for Laravel Cloud Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9582F4563074C80E00E5A2EF /* Flare for Laravel Cloud */ = {
+			isa = PBXGroup;
+			children = (
+				9582F4573074C80E00E5A2EF /* AppDelegate.swift */,
+				9582F4633074C80E00E5A2EF /* ViewController.swift */,
+				9582F4653074C80E00E5A2EF /* Main.storyboard */,
+				9582F4683074C80F00E5A2EF /* Assets.xcassets */,
+				9582F46A3074C80F00E5A2EF /* Info.plist */,
+				9582F4593074C80E00E5A2EF /* Resources */,
+			);
+			path = "Flare for Laravel Cloud";
+			sourceTree = "<group>";
+		};
+		9582F4593074C80E00E5A2EF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9582F45A3074C80E00E5A2EF /* Main.html */,
+				9582F45D3074C80E00E5A2EF /* Icon.png */,
+				9582F45F3074C80E00E5A2EF /* Style.css */,
+				9582F4613074C80E00E5A2EF /* Script.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9582F4733074C80F00E5A2EF /* Flare for Laravel Cloud Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9582F4803074C80F00E5A2EF /* Resources */,
+				9582F4743074C80F00E5A2EF /* SafariWebExtensionHandler.swift */,
+				9582F4763074C80F00E5A2EF /* Info.plist */,
+			);
+			path = "Flare for Laravel Cloud Extension";
+			sourceTree = "<group>";
+		};
+		9582F4803074C80F00E5A2EF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9582F4813074C80F00E5A2EF /* styles.css */,
+				9582F4823074C80F00E5A2EF /* background.js */,
+				9582F4833074C80F00E5A2EF /* dev-reload.js */,
+				9582F4843074C80F00E5A2EF /* settings.css */,
+				9582F4853074C80F00E5A2EF /* icons */,
+				9582F4863074C80F00E5A2EF /* manifest.json */,
+				9582F4873074C80F00E5A2EF /* content.js */,
+				9582F4883074C80F00E5A2EF /* settings.html */,
+				9582F4893074C80F00E5A2EF /* fonts */,
+				9582F48A3074C80F00E5A2EF /* settings.js */,
+			);
+			name = Resources;
+			path = "Flare for Laravel Cloud Extension";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9582F4533074C80E00E5A2EF /* Flare for Laravel Cloud */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9582F47D3074C80F00E5A2EF /* Build configuration list for PBXNativeTarget "Flare for Laravel Cloud" */;
+			buildPhases = (
+				9582F4503074C80E00E5A2EF /* Sources */,
+				9582F4513074C80E00E5A2EF /* Frameworks */,
+				9582F4523074C80E00E5A2EF /* Resources */,
+				9582F47C3074C80F00E5A2EF /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9582F4723074C80F00E5A2EF /* PBXTargetDependency */,
+			);
+			name = "Flare for Laravel Cloud";
+			productName = "Flare for Laravel Cloud";
+			productReference = 9582F4543074C80E00E5A2EF /* Flare for Laravel Cloud.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9582F46E3074C80F00E5A2EF /* Flare for Laravel Cloud Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9582F4793074C80F00E5A2EF /* Build configuration list for PBXNativeTarget "Flare for Laravel Cloud Extension" */;
+			buildPhases = (
+				9582F46B3074C80F00E5A2EF /* Sources */,
+				9582F46C3074C80F00E5A2EF /* Frameworks */,
+				9582F46D3074C80F00E5A2EF /* Resources */,
+			);
+			buildRules = (
+			);
+			name = "Flare for Laravel Cloud Extension";
+			productName = "Flare for Laravel Cloud Extension";
+			productReference = 9582F46F3074C80F00E5A2EF /* Flare for Laravel Cloud Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9582F44C3074C80E00E5A2EF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					9582F4533074C80E00E5A2EF = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					9582F46E3074C80F00E5A2EF = {
+						CreatedOnToolsVersion = 27.0;
+					};
+				};
+			};
+			buildConfigurationList = 9582F44F3074C80E00E5A2EF /* Build configuration list for PBXProject "Flare for Laravel Cloud" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9582F44B3074C80E00E5A2EF;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 9582F4553074C80E00E5A2EF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9582F4533074C80E00E5A2EF /* Flare for Laravel Cloud */,
+				9582F46E3074C80F00E5A2EF /* Flare for Laravel Cloud Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9582F4523074C80E00E5A2EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				9582F45E3074C80E00E5A2EF /* Icon.png in Resources */,
+				9582F4673074C80E00E5A2EF /* Main.storyboard in Resources */,
+				9582F4623074C80E00E5A2EF /* Script.js in Resources */,
+				9582F45C3074C80E00E5A2EF /* Main.html in Resources */,
+				9582F4693074C80F00E5A2EF /* Assets.xcassets in Resources */,
+				9582F4603074C80E00E5A2EF /* Style.css in Resources */,
+			);
+		};
+		9582F46D3074C80F00E5A2EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				9582F48E3074C80F00E5A2EF /* settings.css in Resources */,
+				9582F4943074C80F00E5A2EF /* settings.js in Resources */,
+				9582F4923074C80F00E5A2EF /* settings.html in Resources */,
+				9582F48C3074C80F00E5A2EF /* background.js in Resources */,
+				9582F48B3074C80F00E5A2EF /* styles.css in Resources */,
+				9582F48F3074C80F00E5A2EF /* icons in Resources */,
+				9582F4903074C80F00E5A2EF /* manifest.json in Resources */,
+				9582F4933074C80F00E5A2EF /* fonts in Resources */,
+				9582F4913074C80F00E5A2EF /* content.js in Resources */,
+				9582F48D3074C80F00E5A2EF /* dev-reload.js in Resources */,
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9582F4503074C80E00E5A2EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+				9582F4643074C80E00E5A2EF /* ViewController.swift in Sources */,
+				9582F4583074C80E00E5A2EF /* AppDelegate.swift in Sources */,
+			);
+		};
+		9582F46B3074C80F00E5A2EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+				9582F4753074C80F00E5A2EF /* SafariWebExtensionHandler.swift in Sources */,
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9582F4723074C80F00E5A2EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9582F46E3074C80F00E5A2EF /* Flare for Laravel Cloud Extension */;
+			targetProxy = 9582F4713074C80F00E5A2EF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9582F45A3074C80E00E5A2EF /* Main.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9582F45B3074C80E00E5A2EF /* Base */,
+			);
+			name = Main.html;
+			sourceTree = "<group>";
+		};
+		9582F4653074C80E00E5A2EF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9582F4663074C80E00E5A2EF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9582F4773074C80F00E5A2EF /* Debug configuration for PBXProject "Flare for Laravel Cloud" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9582F4783074C80F00E5A2EF /* Release configuration for PBXProject "Flare for Laravel Cloud" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		9582F47A3074C80F00E5A2EF /* Debug configuration for PBXNativeTarget "Flare for Laravel Cloud Extension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Flare for Laravel Cloud Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Flare for Laravel Cloud Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "be.spatie.flare-laravel-cloud.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		9582F47B3074C80F00E5A2EF /* Release configuration for PBXNativeTarget "Flare for Laravel Cloud Extension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Flare for Laravel Cloud Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Flare for Laravel Cloud Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "be.spatie.flare-laravel-cloud.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		9582F47E3074C80F00E5A2EF /* Debug configuration for PBXNativeTarget "Flare for Laravel Cloud" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Flare for Laravel Cloud/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Flare for Laravel Cloud";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				INFOPLIST_KEY_NSViewGestureRecognizerIsExclusive = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "be.spatie.flare-laravel-cloud";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		9582F47F3074C80F00E5A2EF /* Release configuration for PBXNativeTarget "Flare for Laravel Cloud" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Flare for Laravel Cloud/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Flare for Laravel Cloud";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				INFOPLIST_KEY_NSViewGestureRecognizerIsExclusive = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "be.spatie.flare-laravel-cloud";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9582F44F3074C80E00E5A2EF /* Build configuration list for PBXProject "Flare for Laravel Cloud" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9582F4773074C80F00E5A2EF /* Debug configuration for PBXProject "Flare for Laravel Cloud" */,
+				9582F4783074C80F00E5A2EF /* Release configuration for PBXProject "Flare for Laravel Cloud" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		9582F4793074C80F00E5A2EF /* Build configuration list for PBXNativeTarget "Flare for Laravel Cloud Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9582F47A3074C80F00E5A2EF /* Debug configuration for PBXNativeTarget "Flare for Laravel Cloud Extension" */,
+				9582F47B3074C80F00E5A2EF /* Release configuration for PBXNativeTarget "Flare for Laravel Cloud Extension" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		9582F47D3074C80F00E5A2EF /* Build configuration list for PBXNativeTarget "Flare for Laravel Cloud" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9582F47E3074C80F00E5A2EF /* Debug configuration for PBXNativeTarget "Flare for Laravel Cloud" */,
+				9582F47F3074C80F00E5A2EF /* Release configuration for PBXNativeTarget "Flare for Laravel Cloud" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9582F44C3074C80E00E5A2EF /* Project object */;
+	validationLevel = 1;
+}

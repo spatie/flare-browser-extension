@@ -1,0 +1,8 @@
+.DS_Store
+.bloom/
+__pycache__/
+dist/
+preview/
+*.xcuserstate
+xcuserdata/
+DerivedData/

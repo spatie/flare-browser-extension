@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "Flare for Laravel Cloud",
+  "version": "0.1.24",
+  "description": "Open the matching Flare project from Laravel Cloud.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://flareapp.io/*"
+  ],
+  "options_page": "settings.html",
+  "action": {
+    "default_title": "Flare settings"
+  },
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "manifest.json"
+      ],
+      "matches": [
+        "https://cloud.laravel.com/*"
+      ]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://cloud.laravel.com/*"
+      ],
+      "js": [
+        "content.js",
+        "dev-reload.js"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

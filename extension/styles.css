@@ -1,0 +1,214 @@
+.flare-extension-action {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  width: max-content;
+  height: 2.5rem;
+  margin-inline-start: 0.625rem;
+  vertical-align: top;
+  font: inherit;
+}
+
+.flare-extension-action *,
+.flare-extension-menu * {
+  box-sizing: border-box;
+}
+
+.flare-extension-split {
+  display: inline-flex;
+  align-items: stretch;
+  flex: none;
+  width: max-content;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid #d2d3d9;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(30, 30, 38, .06);
+  white-space: nowrap;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.flare-extension-split:hover {
+  border-color: #bdbec8;
+  box-shadow: 0 2px 5px rgba(34, 34, 47, .1);
+}
+
+.flare-extension-action[data-state="setup"] .flare-extension-split {
+  border-color: #d2d3d9;
+  background: #f8f8fa;
+  box-shadow: none;
+}
+
+.flare-extension-action[data-state="setup"] .flare-extension-split:hover {
+  border-color: #bdbec8;
+  background: #f3f3f6;
+}
+
+.flare-extension-action .flare-extension-main,
+.flare-extension-action .flare-extension-trigger {
+  all: unset;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #2c2d34;
+  font: inherit;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.flare-extension-action .flare-extension-main {
+  flex: none;
+  gap: 8px;
+  min-width: 87px;
+  padding: 0 10px 0 13px;
+  font-size: 14px;
+  font-weight: 610;
+}
+
+.flare-extension-action .flare-extension-main:hover,
+.flare-extension-action .flare-extension-main:visited {
+  color: #2c2d34;
+  text-decoration: none;
+}
+
+.flare-extension-action[data-state="setup"] .flare-extension-main {
+  min-width: 114px;
+  color: #62656e;
+}
+
+.flare-extension-action[data-state="setup"] .flare-extension-main:hover,
+.flare-extension-action[data-state="setup"] .flare-extension-main:visited {
+  color: #4e515b;
+}
+
+.flare-extension-action[data-state="setup"] .flare-extension-mark {
+  filter: grayscale(1);
+  opacity: .68;
+}
+
+.flare-extension-mark {
+  display: block;
+  width: 15px;
+  height: 23px;
+  flex: none;
+}
+
+.flare-extension-action .flare-extension-trigger {
+  flex: 0 0 30px !important;
+  width: 30px !important;
+  min-width: 30px !important;
+  max-width: 30px !important;
+  padding: 0;
+  border-left: 1px solid #e4e4e8;
+  border-radius: 0 6px 6px 0;
+}
+
+.flare-extension-action .flare-extension-trigger:hover,
+.flare-extension-action .flare-extension-trigger[aria-expanded="true"] {
+  background: #f6f6f8;
+}
+
+.flare-extension-action[data-state="setup"] .flare-extension-trigger,
+.flare-extension-action[data-state="disconnected"] .flare-extension-trigger {
+  display: none;
+}
+
+.flare-extension-trigger svg {
+  display: block;
+  width: 13px;
+  height: 13px;
+  color: #737580;
+  transition: transform 150ms ease;
+}
+
+.flare-extension-trigger[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.flare-extension-action .flare-extension-main:focus-visible,
+.flare-extension-action .flare-extension-trigger:focus-visible,
+.flare-extension-menu .flare-extension-menu-item:focus-visible {
+  outline: 2px solid #6d28d9;
+  outline-offset: -3px;
+}
+
+.flare-extension-menu {
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 2147483647;
+  width: 246px;
+  padding: 5px;
+  border: 1px solid #e2e2e8;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 12px 35px rgba(29, 30, 43, .14), 0 2px 7px rgba(29, 30, 43, .07);
+  color: #303139;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.flare-extension-menu[hidden] {
+  display: none !important;
+}
+
+.flare-extension-menu .flare-extension-menu-item {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 40px;
+  padding: 0 10px;
+  border-radius: 6px;
+  color: #303139;
+  font: inherit;
+  font-weight: 520;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.flare-extension-menu .flare-extension-menu-item:hover,
+.flare-extension-menu .flare-extension-menu-item:focus-visible {
+  background: #f4f4f7;
+  color: #303139;
+  text-decoration: none;
+}
+
+.flare-extension-menu .flare-extension-menu-item svg {
+  display: block;
+  width: 17px;
+  height: 17px;
+  flex: none;
+  color: #858792;
+}
+
+.flare-extension-menu .flare-extension-menu-item .flare-extension-menu-arrow {
+  width: 13px;
+  height: 13px;
+  margin-left: auto;
+}
+
+.flare-extension-menu .flare-extension-menu-copy {
+  margin: 5px 7px 7px;
+  padding: 8px 8px 10px;
+  border-bottom: 1px solid #ededf0;
+  color: #737580;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flare-extension-split,
+  .flare-extension-trigger svg {
+    transition: none;
+  }
+}

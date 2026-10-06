@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flare for Laravel Cloud</title>
+  <link rel="stylesheet" href="settings.css">
+  <script defer src="settings.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div class="brand">
+        <svg class="mark" viewBox="0 0 42 64" fill="none" aria-hidden="true">
+          <path fill="url(#green-side)" d="M13.73 31.985 0 23.997V7.99l13.82 8.047-.088 15.948h-.002Z"/>
+          <path fill="url(#green-top)" d="M27.46 23.968 0 7.99 13.73 0l27.52 15.977-13.79 7.99Z"/>
+          <path fill="url(#purple-side)" d="M13.73 64 0 56.01V40.032l13.7 7.99L13.73 64Z"/>
+          <path fill="url(#purple-top)" d="M13.7 48.023 0 40.033l13.73-8.017 13.76 8.017-13.79 7.99Z"/>
+          <defs>
+            <linearGradient id="green-side" x1="6.91" x2="6.91" y1="26.18" y2="2.182" gradientUnits="userSpaceOnUse"><stop stop-color="#48B987"/><stop offset="1" stop-color="#137449"/></linearGradient>
+            <linearGradient id="green-top" x1="20.625" x2="20.625" y1="9.015" y2="32.983" gradientUnits="userSpaceOnUse"><stop stop-color="#66FFBC"/><stop offset="1" stop-color="#218E5E"/></linearGradient>
+            <linearGradient id="purple-side" x1="6.865" x2="6.865" y1="58.192" y2="34.197" gradientUnits="userSpaceOnUse"><stop stop-color="#A189F2"/><stop offset="1" stop-color="#3F00F5"/></linearGradient>
+            <linearGradient id="purple-top" x1="13.745" x2="13.745" y1="23.498" y2="39.506" gradientUnits="userSpaceOnUse"><stop stop-color="#BBADFA"/><stop offset="1" stop-color="#9275F4"/></linearGradient>
+          </defs>
+        </svg>
+        <span class="wordmark">Flare</span>
+      </div>
+      <span class="masthead-label">Browser extension</span>
+    </header>
+
+    <section class="panel" aria-labelledby="heading">
+      <div class="panel-heading">
+        <h1 id="heading">Laravel Cloud</h1>
+        <p class="intro">Open the matching Flare project from your Laravel Cloud dashboard.</p>
+      </div>
+
+      <div id="disconnected" class="panel-body" hidden>
+        <div class="state-row">
+          <span class="state-indicator state-indicator-idle" aria-hidden="true"></span>
+          <div class="state-copy">
+            <strong>Connect your Flare account</strong>
+            <p>Grant read-only access to find your projects and link them from Laravel Cloud.</p>
+          </div>
+        </div>
+        <div class="panel-actions">
+          <button class="primary" id="connect" type="button">Connect to Flare <span class="button-arrow" aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+
+      <div id="pending" class="panel-body" hidden>
+        <div class="state-row">
+          <span class="state-indicator state-indicator-pending" aria-hidden="true"></span>
+          <div class="state-copy">
+            <strong>Approve the connection in Flare</strong>
+            <p>Sign in to Flare and approve this extension. If prompted, enter the code below.</p>
+          </div>
+        </div>
+        <div class="code-field">
+          <span class="field-label">Your connection code</span>
+          <div class="code-row"><code id="user-code"></code><button class="copy-button" id="copy-code" type="button">Copy</button></div>
+        </div>
+        <div class="panel-actions panel-actions-pending">
+          <button class="primary" id="open-flare" type="button">Open Flare <span class="button-arrow" aria-hidden="true">↗</span></button>
+          <p class="waiting"><span class="spinner" aria-hidden="true"></span> Waiting for approval</p>
+        </div>
+      </div>
+
+      <div id="connected" class="panel-body" hidden>
+        <div class="state-row">
+          <span class="state-indicator state-indicator-connected" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8.25 3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="state-copy">
+            <strong>Connected to Flare</strong>
+            <p>The Flare button on Laravel Cloud opens the matching project when one is found.</p>
+          </div>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Project matching</span>
+          <p>Exact allowed domain, then exact project name or slug. If there is no unique match, the button opens Flare.</p>
+        </div>
+        <div class="panel-actions">
+          <button class="secondary" id="disconnect" type="button">Disconnect</button>
+        </div>
+      </div>
+
+      <p class="error" id="error" role="alert" hidden></p>
+    </section>
+    <p class="footer">Manage this connection from the Flare toolbar icon.</p>
+  </main>
+</body>
+</html>

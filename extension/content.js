@@ -1,0 +1,321 @@
+(() => {
+  const extensionApi = globalThis.browser || globalThis.chrome;
+  const actionClass = "flare-extension-action";
+  const menuClass = "flare-extension-menu";
+  const flareUrl = "https://flareapp.io/";
+  const installationUrl = "https://flareapp.io/docs/laravel/general/installation";
+  const mark = `
+    <svg class="flare-extension-mark" viewBox="0 0 42 64" fill="none" aria-hidden="true">
+      <path fill="url(#flare-extension-green-side)" d="M13.73 31.985 0 23.997V7.99l13.82 8.047-.088 15.948h-.002Z"/>
+      <path fill="url(#flare-extension-green-top)" d="M27.46 23.968 0 7.99 13.73 0l27.52 15.977-13.79 7.99Z"/>
+      <path fill="url(#flare-extension-purple-side)" d="M13.73 64 0 56.01V40.032l13.7 7.99L13.73 64Z"/>
+      <path fill="url(#flare-extension-purple-top)" d="M13.7 48.023 0 40.033l13.73-8.017 13.76 8.017-13.79 7.99Z"/>
+      <defs>
+        <linearGradient id="flare-extension-green-side" x1="6.91" x2="6.91" y1="26.18" y2="2.182" gradientUnits="userSpaceOnUse"><stop stop-color="#48B987"/><stop offset="1" stop-color="#137449"/></linearGradient>
+        <linearGradient id="flare-extension-green-top" x1="20.625" x2="20.625" y1="9.015" y2="32.983" gradientUnits="userSpaceOnUse"><stop stop-color="#66FFBC"/><stop offset="1" stop-color="#218E5E"/></linearGradient>
+        <linearGradient id="flare-extension-purple-side" x1="6.865" x2="6.865" y1="58.192" y2="34.197" gradientUnits="userSpaceOnUse"><stop stop-color="#A189F2"/><stop offset="1" stop-color="#3F00F5"/></linearGradient>
+        <linearGradient id="flare-extension-purple-top" x1="13.745" x2="13.745" y1="23.498" y2="39.506" gradientUnits="userSpaceOnUse"><stop stop-color="#BBADFA"/><stop offset="1" stop-color="#9275F4"/></linearGradient>
+      </defs>
+    </svg>`;
+  const chevron = '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const arrow = '<svg class="flare-extension-menu-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+  const icons = {
+    errors: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M10 6v4m0 3h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
+    performance: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 14.5a7 7 0 1 1 14 0M10 13l3.5-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    guide: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 3.5h6l3 3v10H6a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5"/><path d="M11.5 3.5V7H15M7 10h5M7 13h5" stroke="currentColor" stroke-width="1.4"/></svg>',
+    settings: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 7v6M7 10h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+  };
+
+  let queued = false;
+  let markId = 0;
+  let resolvedProject;
+  let resolveGeneration = 0;
+  let retryTimer;
+  let view = { kind: "loading" };
+  let activeMenu;
+  const instances = new WeakMap();
+
+  function cloudProject() {
+    const parts = location.pathname.split("/").filter(Boolean);
+    if (parts.length < 2) return "";
+    try {
+      return decodeURIComponent(parts[1]);
+    } catch {
+      return "";
+    }
+  }
+
+  function closeMenu(restoreFocus = false) {
+    if (!activeMenu) return;
+    activeMenu.menu.hidden = true;
+    activeMenu.trigger.setAttribute("aria-expanded", "false");
+    if (restoreFocus && activeMenu.trigger.isConnected) activeMenu.trigger.focus();
+    activeMenu = undefined;
+  }
+
+  function positionMenu(instance) {
+    const rect = instance.wrap.getBoundingClientRect();
+    const menuRect = instance.menu.getBoundingClientRect();
+    const top = rect.bottom + 8 + menuRect.height <= innerHeight - 8
+      ? rect.bottom + 8
+      : Math.max(8, rect.top - menuRect.height - 8);
+    const left = Math.max(8, Math.min(rect.right - menuRect.width, innerWidth - menuRect.width - 8));
+    instance.menu.style.top = `${Math.round(top)}px`;
+    instance.menu.style.left = `${Math.round(left)}px`;
+  }
+
+  function openMenu(instance) {
+    closeMenu();
+    instance.menu.hidden = false;
+    instance.trigger.setAttribute("aria-expanded", "true");
+    activeMenu = instance;
+    positionMenu(instance);
+    instance.menu.querySelector('[role="menuitem"]')?.focus();
+  }
+
+  function openSettings() {
+    Promise.resolve(extensionApi.runtime.sendMessage({ type: "flare-open-settings" })).catch(() => {});
+  }
+
+  function addMenuItem(menu, item) {
+    const element = document.createElement(item.href ? "a" : "button");
+    element.className = "flare-extension-menu-item";
+    element.setAttribute("role", "menuitem");
+    if (item.href) {
+      element.href = item.href;
+      element.target = "_blank";
+      element.rel = "noopener noreferrer";
+    } else {
+      element.type = "button";
+      element.addEventListener("click", () => {
+        closeMenu();
+        if (item.action === "settings") openSettings();
+        if (item.action === "retry") {
+          resolvedProject = undefined;
+          resolveProject();
+        }
+      });
+    }
+    element.innerHTML = `${icons[item.icon]}<span></span>${item.href ? arrow : ""}`;
+    element.querySelector("span").textContent = item.label;
+    menu.append(element);
+  }
+
+  function updateMenu(instance) {
+    const menu = instance.menu;
+    menu.replaceChildren();
+    let copy;
+    let items;
+    if (view.kind === "matched") {
+      items = [
+        { label: "Errors", icon: "errors", href: view.errorsUrl },
+        { label: "Performance", icon: "performance", href: view.performanceUrl },
+      ];
+    } else if (view.kind === "setup") {
+      copy = "No matching Flare project is available. Create or connect one, then follow the Laravel installation guide.";
+      items = [{ label: "Installation guide", icon: "guide", href: installationUrl }];
+    } else if (view.kind === "disconnected") {
+      copy = "Connect your Flare account to find this project.";
+      items = [{ label: "Connection settings", icon: "settings", action: "settings" }];
+    } else {
+      copy = view.kind === "loading" ? "Finding a matching Flare project…" : "Flare could not check this project right now.";
+      items = [
+        { label: "Try again", icon: "settings", action: "retry" },
+        { label: "Open Flare", icon: "errors", href: flareUrl },
+      ];
+    }
+    if (copy) {
+      const description = document.createElement("p");
+      description.className = "flare-extension-menu-copy";
+      description.textContent = copy;
+      menu.append(description);
+    }
+    items.forEach((item) => addMenuItem(menu, item));
+  }
+
+  function render(instance) {
+    const key = `${view.kind}:${view.errorsUrl || ""}:${view.performanceUrl || ""}`;
+    if (instance.wrap.dataset.renderKey === key) return;
+    if (activeMenu === instance) closeMenu();
+    instance.wrap.dataset.renderKey = key;
+    instance.wrap.dataset.state = view.kind;
+    const label = view.kind === "setup" ? "Set up Flare" : view.kind === "disconnected" ? "Connect Flare" : "Flare";
+    instance.label.textContent = label;
+    const title = view.kind === "matched"
+      ? `Open ${view.name} Errors on Flare in a new tab`
+      : view.kind === "setup"
+        ? "Open the Flare Laravel installation guide in a new tab"
+        : view.kind === "disconnected"
+          ? "Connect your Flare account"
+          : "Open Flare in a new tab";
+    instance.main.href = view.kind === "matched" ? view.errorsUrl : view.kind === "setup" ? installationUrl : view.kind === "disconnected" ? "#" : flareUrl;
+    instance.main.target = view.kind === "disconnected" ? "" : "_blank";
+    instance.main.rel = view.kind === "disconnected" ? "" : "noopener noreferrer";
+    instance.main.setAttribute("aria-label", title);
+    instance.main.title = title;
+    instance.trigger.setAttribute("aria-label", `${label} destinations`);
+    updateMenu(instance);
+  }
+
+  function renderAll() {
+    document.querySelectorAll(`.${actionClass}`).forEach((wrap) => {
+      const instance = instances.get(wrap);
+      if (instance) render(instance);
+    });
+  }
+
+  function setView(nextView) {
+    view = nextView;
+    renderAll();
+  }
+
+  function createAction(deploy) {
+    const wrap = document.createElement("div");
+    wrap.className = actionClass;
+    const id = `flare-extension-${++markId}`;
+    const uniqueMark = mark
+      .replaceAll("url(#flare-extension-", `url(#${id}-`)
+      .replaceAll('id="flare-extension-', `id="${id}-`);
+    wrap.innerHTML = `<span class="flare-extension-split"><a class="flare-extension-main">${uniqueMark}<span class="flare-extension-label"></span></a><button class="flare-extension-trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="${id}-menu">${chevron}</button></span>`;
+    const menu = document.createElement("div");
+    menu.className = menuClass;
+    menu.id = `${id}-menu`;
+    menu.setAttribute("role", "menu");
+    menu.hidden = true;
+    document.body.append(menu);
+    deploy.insertAdjacentElement("afterend", wrap);
+
+    const instance = {
+      wrap,
+      menu,
+      main: wrap.querySelector(".flare-extension-main"),
+      label: wrap.querySelector(".flare-extension-label"),
+      trigger: wrap.querySelector(".flare-extension-trigger"),
+    };
+    instances.set(wrap, instance);
+    instance.main.addEventListener("click", (event) => {
+      if (view.kind !== "disconnected") return;
+      event.preventDefault();
+      openSettings();
+    });
+    instance.trigger.addEventListener("click", () => {
+      if (activeMenu === instance) closeMenu();
+      else openMenu(instance);
+    });
+    instance.trigger.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowDown") return;
+      event.preventDefault();
+      openMenu(instance);
+    });
+    menu.addEventListener("keydown", (event) => {
+      const items = [...menu.querySelectorAll('[role="menuitem"]')];
+      const index = items.indexOf(document.activeElement);
+      if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
+      event.preventDefault();
+      if (event.key === "Home") items[0]?.focus();
+      else if (event.key === "End") items.at(-1)?.focus();
+      else items[(index + (event.key === "ArrowDown" ? 1 : -1) + items.length) % items.length]?.focus();
+    });
+    menu.addEventListener("focusout", () => setTimeout(() => {
+      if (activeMenu === instance && !menu.contains(document.activeElement) && document.activeElement !== instance.trigger) closeMenu();
+    }, 0));
+    menu.addEventListener("click", (event) => {
+      if (event.target.closest("a")) setTimeout(() => closeMenu(), 0);
+    });
+    render(instance);
+    return instance;
+  }
+
+  function isDeployButton(element) {
+    if (element.closest(`.${actionClass}, .${menuClass}`)) return false;
+    const label = (element.getAttribute("aria-label") || element.textContent || "")
+      .replace(/\s+/g, " ")
+      .trim();
+    return label === "Deploy";
+  }
+
+  function addActions() {
+    document.querySelectorAll(`.${actionClass}`).forEach((wrap) => {
+      if (wrap.previousElementSibling && isDeployButton(wrap.previousElementSibling)) return;
+      const instance = instances.get(wrap);
+      if (activeMenu === instance) closeMenu();
+      instance?.menu.remove();
+      wrap.remove();
+    });
+    document.querySelectorAll('button, a, [role="button"]').forEach((deploy) => {
+      if (!isDeployButton(deploy)) return;
+      let wrap = deploy.nextElementSibling;
+      let instance = wrap?.classList.contains(actionClass) ? instances.get(wrap) : undefined;
+      if (!instance) instance = createAction(deploy);
+      const height = deploy.getBoundingClientRect().height;
+      if (height) instance.wrap.style.height = `${height}px`;
+      instance.wrap.style.top = "0px";
+      const offset = deploy.getBoundingClientRect().top - instance.wrap.getBoundingClientRect().top;
+      if (offset) instance.wrap.style.top = `${Math.round(offset * 2) / 2}px`;
+    });
+  }
+
+  async function resolveProject() {
+    const project = cloudProject();
+    if (project === resolvedProject) return;
+    resolvedProject = project;
+    const generation = ++resolveGeneration;
+    clearTimeout(retryTimer);
+    setView({ kind: "loading" });
+    if (!project) {
+      setView({ kind: "error" });
+      return;
+    }
+    try {
+      const result = await extensionApi.runtime.sendMessage({ type: "flare-match-project", project });
+      if (generation !== resolveGeneration || project !== cloudProject()) return;
+      if (result?.error) throw new Error(result.error);
+      if (!result?.connected) setView({ kind: "disconnected" });
+      else if (result.match?.url && result.match?.performanceUrl) {
+        setView({ kind: "matched", name: result.match.name, errorsUrl: result.match.url, performanceUrl: result.match.performanceUrl });
+      } else setView({ kind: "setup" });
+    } catch {
+      if (generation !== resolveGeneration || project !== cloudProject()) return;
+      setView({ kind: "error" });
+      retryTimer = setTimeout(() => {
+        resolvedProject = undefined;
+        resolveProject();
+      }, 30_000);
+    }
+  }
+
+  function queueUpdate() {
+    if (queued) return;
+    queued = true;
+    queueMicrotask(() => {
+      queued = false;
+      addActions();
+      resolveProject();
+    });
+  }
+
+  document.addEventListener("pointerdown", (event) => {
+    if (activeMenu && !activeMenu.wrap.contains(event.target) && !activeMenu.menu.contains(event.target)) closeMenu();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && activeMenu) {
+      event.preventDefault();
+      closeMenu(true);
+    }
+  });
+  window.addEventListener("scroll", () => closeMenu(), true);
+  window.addEventListener("resize", queueUpdate);
+  extensionApi.runtime.onMessage.addListener((message) => {
+    if (message?.type !== "flare-connection-changed") return;
+    resolvedProject = undefined;
+    resolveProject();
+  });
+
+  addActions();
+  resolveProject();
+  new MutationObserver(queueUpdate).observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+    characterData: true,
+  });
+})();
