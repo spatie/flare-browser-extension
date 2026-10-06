@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Flare for Laravel Cloud",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "description": "Open the matching Flare project from Laravel Cloud.",
   "permissions": [
     "storage"

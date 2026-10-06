@@ -196,7 +196,9 @@ function projectUrls(rawUrl) {
     if (errors.origin !== FLARE_ORIGIN || !/^\/[^/]+\/errors\/?$/.test(errors.pathname) || errors.search || errors.hash) return null;
     const performance = new URL(errors.href);
     performance.pathname = errors.pathname.replace(/\/errors\/?$/, "/monitoring");
-    return { url: errors.href, performanceUrl: performance.href };
+    const logs = new URL(errors.href);
+    logs.pathname = errors.pathname.replace(/\/errors\/?$/, "/logging");
+    return { url: errors.href, performanceUrl: performance.href, logsUrl: logs.href };
   } catch {
     return null;
   }

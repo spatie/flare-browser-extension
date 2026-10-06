@@ -21,6 +21,7 @@
   const icons = {
     errors: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M10 6v4m0 3h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
     performance: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 4v11.5c0 .6.4 1 1 1H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="m6 12 3-3 2.5 2 3.5-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    logs: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="4" y="2.75" width="12" height="14.5" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 7h6M7 10h6M7 13h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
     guide: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 3.5h6l3 3v10H6a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5"/><path d="M11.5 3.5V7H15M7 10h5M7 13h5" stroke="currentColor" stroke-width="1.4"/></svg>',
     settings: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 7v6M7 10h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
   };
@@ -109,6 +110,7 @@
       items = [
         { label: "Errors", icon: "errors", href: view.errorsUrl },
         { label: "Performance", icon: "performance", href: view.performanceUrl },
+        { label: "Logs", icon: "logs", href: view.logsUrl },
       ];
     } else if (view.kind === "setup") {
       copy = "No matching Flare project is available. Create or connect one, then follow the Laravel installation guide.";
@@ -133,7 +135,7 @@
   }
 
   function render(instance) {
-    const key = `${view.kind}:${view.errorsUrl || ""}:${view.performanceUrl || ""}`;
+    const key = `${view.kind}:${view.errorsUrl || ""}:${view.performanceUrl || ""}:${view.logsUrl || ""}`;
     if (instance.wrap.dataset.renderKey === key) return;
     if (activeMenu === instance) closeMenu();
     instance.wrap.dataset.renderKey = key;
@@ -270,8 +272,8 @@
       if (generation !== resolveGeneration || project !== cloudProject()) return;
       if (result?.error) throw new Error(result.error);
       if (!result?.connected) setView({ kind: "disconnected" });
-      else if (result.match?.url && result.match?.performanceUrl) {
-        setView({ kind: "matched", name: result.match.name, errorsUrl: result.match.url, performanceUrl: result.match.performanceUrl });
+      else if (result.match?.url && result.match?.performanceUrl && result.match?.logsUrl) {
+        setView({ kind: "matched", name: result.match.name, errorsUrl: result.match.url, performanceUrl: result.match.performanceUrl, logsUrl: result.match.logsUrl });
       } else setView({ kind: "setup" });
     } catch {
       if (generation !== resolveGeneration || project !== cloudProject()) return;
