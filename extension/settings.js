@@ -64,6 +64,9 @@ $("connect").addEventListener("click", async () => {
   $("connect").disabled = true;
   error("");
   try {
+    const flareAccess = { origins: ["https://flareapp.io/*"] };
+    const granted = await extensionApi.permissions.request(flareAccess);
+    if (!granted) throw new Error("Allow access to flareapp.io to connect your account.");
     showPending(await send("flare-connect"));
     $("open-flare").click();
   } catch (caught) {

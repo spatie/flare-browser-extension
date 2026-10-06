@@ -129,8 +129,8 @@
       copy = "No matching Flare project exists yet. Create one for this Laravel Cloud project.";
       items = [{ label: "Create Flare project", icon: "settings", href: view.createUrl }];
     } else if (view.kind === "disconnected") {
-      copy = "Connect your Flare account to find this project.";
-      items = [{ label: "Connection settings", icon: "settings", action: "settings" }];
+      copy = "Connect your Flare account to open matching projects directly.";
+      items = [{ label: "Connect to Flare", icon: "settings", action: "settings" }];
     } else {
       copy = view.kind === "loading" ? "Finding a matching Flare project…" : "Flare could not check this project right now.";
       items = [
@@ -156,22 +156,22 @@
     if (activeMenu === instance) closeMenu();
     instance.wrap.dataset.renderKey = key;
     instance.wrap.dataset.state = view.kind;
-    const label = view.kind === "setup" ? "Set up Flare" : view.kind === "disconnected" ? "Connect Flare" : "Flare";
+    const label = view.kind === "setup" ? "Set up Flare" : "Flare";
     instance.label.textContent = label;
     const title = view.kind === "matched"
       ? `Open ${view.name} Errors on Flare in a new tab`
       : view.kind === "setup"
         ? `Create a Flare project for ${view.name} in a new tab`
         : view.kind === "disconnected"
-          ? "Connect your Flare account"
+          ? "Open Flare projects in a new tab"
           : "Open Flare in a new tab";
     instance.main.href = view.kind === "matched"
       ? view.errorsUrl
       : view.kind === "setup"
         ? view.createUrl
-        : view.kind === "disconnected" ? "#" : flareUrl;
-    instance.main.target = view.kind === "disconnected" ? "" : "_blank";
-    instance.main.rel = view.kind === "disconnected" ? "" : "noopener noreferrer";
+        : view.kind === "disconnected" ? `${flareUrl}projects` : flareUrl;
+    instance.main.target = "_blank";
+    instance.main.rel = "noopener noreferrer";
     instance.main.setAttribute("aria-label", title);
     instance.main.title = title;
     instance.trigger.setAttribute("aria-label", `${label} destinations`);
@@ -229,11 +229,6 @@
       trigger: wrap.querySelector(".flare-extension-trigger"),
     };
     instances.set(wrap, instance);
-    instance.main.addEventListener("click", (event) => {
-      if (view.kind !== "disconnected") return;
-      event.preventDefault();
-      openSettings();
-    });
     instance.trigger.addEventListener("click", (event) => {
       if (activeMenu === instance) closeMenu();
       else openMenu(instance, event.detail === 0);

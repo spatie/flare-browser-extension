@@ -30,7 +30,7 @@ Disable the unpacked development extension before installing the Web Store versi
 
 ## Safari on macOS
 
-Testers can install **Flare by Spatie** through a TestFlight invitation. The installed app and Safari extension are named **Flare**. In Safari, enable the extension in **Settings > Extensions** and allow access to `cloud.laravel.com`.
+Testers can install **Flare by Spatie** through a TestFlight invitation. The installed app and Safari extension are named **Flare**. Open the app first to see why Safari requests access to Laravel Cloud, then use its button to open **Safari Settings > Extensions**. Enable Flare and allow access to `cloud.laravel.com`. In Flare's extension settings, choose **Connect to Flare** and allow access to `flareapp.io` when Safari asks.
 
 For local development, open `safari/Flare/Flare.xcodeproj` in Xcode, select the macOS app target, and run it.
 

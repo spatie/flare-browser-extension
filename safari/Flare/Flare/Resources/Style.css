@@ -1,45 +1,42 @@
-* {
-    -webkit-user-select: none;
-    -webkit-user-drag: none;
-    cursor: default;
-}
-
 :root {
-    color-scheme: light dark;
-
-    --spacing: 20px;
+    color-scheme: light;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1e293b;
+    background: #f3f4fd;
+    -webkit-font-smoothing: antialiased;
 }
 
-html {
-    height: 100%;
-}
+* { box-sizing: border-box; }
+
+html, body { min-height: 100%; height: 100%; }
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-
-    gap: var(--spacing);
-    margin: 0 calc(var(--spacing) * 2);
-    height: 100%;
-
-    font: -apple-system-short-body;
-    text-align: center;
+    display: grid;
+    place-items: center;
+    margin: 0;
+    padding: 28px;
 }
 
-body:not(.state-on, .state-off) :is(.state-on, .state-off) {
-    display: none;
+.card {
+    width: min(100%, 440px);
+    padding: 32px;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 12px 36px rgba(30, 41, 59, .06);
 }
 
-body.state-on :is(.state-off, .state-unknown) {
-    display: none;
-}
+.brand { display: flex; align-items: center; gap: 10px; font-size: 21px; font-weight: 750; letter-spacing: -.04em; }
+.brand img { object-fit: contain; }
+h1 { margin: 30px 0 8px; font-size: 29px; font-weight: 720; letter-spacing: -.04em; line-height: 1.2; }
+.state-note { margin: 0; color: #475569; font-size: 14px; line-height: 1.55; }
+.permission-note { margin: 25px 0; padding: 18px 20px; border-radius: 10px; background: #f7f7fd; }
+.permission-note h2 { margin: 0 0 6px; font-size: 13px; font-weight: 700; }
+.permission-note p { margin: 0; color: #475569; font-size: 13px; line-height: 1.55; }
+button { min-height: 42px; padding: 0 17px; border: 0; border-radius: 8px; background: #6d28d9; color: #fff; font: inherit; font-size: 13px; font-weight: 650; cursor: pointer; }
+button:hover { background: #5b21b6; }
+button:focus-visible { outline: 3px solid #a78bfa; outline-offset: 3px; }
 
-body.state-off :is(.state-on, .state-unknown) {
-    display: none;
-}
-
-button {
-    font-size: 1em;
-}
+body:not(.state-on, .state-off) :is(.state-on, .state-off),
+body.state-on :is(.state-off, .state-unknown),
+body.state-off :is(.state-on, .state-unknown) { display: none; }

@@ -63,8 +63,6 @@ h1 { margin: 0 0 6px; font-family: Satoshi, sans-serif; font-size: 30px; font-we
 .panel-body { border-top: 1px solid var(--line); }
 .state-row { display: flex; align-items: center; gap: 14px; padding: 22px 34px; }
 .state-indicator { display: grid; place-items: center; flex: none; width: 32px; height: 32px; margin-top: 1px; border-radius: 9px; }
-.state-indicator-idle { background: var(--brand-soft); }
-.state-indicator-idle::after { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); content: ""; }
 .state-indicator-pending { background: #f9f5e3; }
 .state-indicator-pending::after { width: 8px; height: 8px; border: 2px solid #ca8a04; border-radius: 50%; content: ""; }
 .state-indicator-connected { background: #e6f7ee; color: #16865a; }

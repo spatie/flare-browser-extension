@@ -1,19 +1,30 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../Style.css">
     <script src="../Script.js" defer></script>
 </head>
 <body>
-    <img src="../Icon.png" width="128" height="128" alt="Flare Icon">
-    <p class="state-unknown">You can turn on Flare’s extension in Safari Extensions preferences.</p>
-    <p class="state-on">Flare’s extension is currently on. You can turn it off in Safari Extensions preferences.</p>
-    <p class="state-off">Flare’s extension is currently off. You can turn it on in Safari Extensions preferences.</p>
-    <button class="open-preferences">Quit and Open Safari Extensions Preferences…</button>
+    <main class="card">
+        <div class="brand">
+            <img src="../Icon.png" width="40" height="40" alt="">
+            <span>Flare</span>
+        </div>
+
+        <h1>Flare in Safari</h1>
+        <p class="state-unknown state-note">Turn on the extension in Safari Settings to show Flare links beside your projects.</p>
+        <p class="state-off state-note">Turn on the extension in Safari Settings to show Flare links beside your projects.</p>
+        <p class="state-on state-note">The extension is on. Allow access to Laravel Cloud in Safari, then connect your Flare account from the extension settings.</p>
+
+        <section class="permission-note" aria-labelledby="permission-heading">
+            <h2 id="permission-heading">Why Safari asks for access</h2>
+            <p>Flare needs access to cloud.laravel.com to read the project name and add links beside Deploy. Safari's permission covers the whole site. The extension only uses the project name to look for a match in Flare.</p>
+        </section>
+
+        <button class="open-preferences" type="button">Open Safari Extensions Settings</button>
+    </main>
 </body>
 </html>
