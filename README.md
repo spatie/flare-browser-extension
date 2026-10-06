@@ -30,7 +30,9 @@ Disable the unpacked development extension before installing the Web Store versi
 
 ## Safari on macOS
 
-Open `safari/Flare/Flare.xcodeproj` in Xcode, select the macOS app target, and run it. In Safari, enable the extension in **Settings > Extensions** and allow access to `cloud.laravel.com`.
+Testers can install **Flare by Spatie** through a TestFlight invitation. The installed app and Safari extension are named **Flare**. In Safari, enable the extension in **Settings > Extensions** and allow access to `cloud.laravel.com`.
+
+For local development, open `safari/Flare/Flare.xcodeproj` in Xcode, select the macOS app target, and run it.
 
 The Safari Xcode project references the files in `extension`, so changes to the shared extension source can be rebuilt in Xcode.
 
