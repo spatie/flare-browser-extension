@@ -12,8 +12,8 @@ function error(message) {
   $("error").hidden = !message;
 }
 
-async function send(type) {
-  const result = await extensionApi.runtime.sendMessage({ type });
+async function send(type, payload = {}) {
+  const result = await extensionApi.runtime.sendMessage({ type, ...payload });
   if (result?.error) throw new Error(result.error);
   return result;
 }
@@ -99,6 +99,26 @@ $("disconnect").addEventListener("click", async () => {
     $("disconnect").disabled = false;
   }
 });
+
+$("hide-unmatched-action").addEventListener("change", async () => {
+  const input = $("hide-unmatched-action");
+  const next = input.checked;
+  input.disabled = true;
+  error("");
+  try {
+    await send("flare-set-display-options", { hideUnmatchedAction: next });
+  } catch (caught) {
+    input.checked = !next;
+    error(caught.message);
+  } finally {
+    input.disabled = false;
+  }
+});
+
+send("flare-display-options").then((options) => {
+  $("hide-unmatched-action").checked = options.hideUnmatchedAction;
+  $("display-options").hidden = false;
+}).catch((caught) => error(caught.message));
 
 send("flare-status").then((state) => {
   if (state.connected) show("connected");

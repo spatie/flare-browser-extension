@@ -10,6 +10,10 @@
   font: inherit;
 }
 
+.flare-extension-action[hidden] {
+  display: none !important;
+}
+
 .flare-extension-action *,
 .flare-extension-menu * {
   box-sizing: border-box;

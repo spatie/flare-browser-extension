@@ -19,8 +19,11 @@
       reloading = true;
       window.setTimeout(() => window.location.reload(), 2000);
       chrome.runtime.sendMessage({ type: "flare-dev-reload" }).catch(() => {});
-    } catch {
-      // A development update may briefly invalidate this extension context.
+    } catch (error) {
+      // Chrome can invalidate the old content script before it reads the new manifest.
+      if (!/Extension context invalidated/i.test(String(error))) return;
+      reloading = true;
+      window.location.reload();
     }
   }
 

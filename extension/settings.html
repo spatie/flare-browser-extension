@@ -30,7 +30,7 @@
     <section class="panel" aria-labelledby="heading">
       <div class="panel-heading">
         <h1 id="heading">Laravel Cloud</h1>
-        <p class="intro">Open the matching Flare project from your Laravel Cloud dashboard.</p>
+        <p class="intro">Open Flare directly from your Laravel Cloud projects.</p>
       </div>
 
       <div id="disconnected" class="panel-body" hidden>
@@ -65,22 +65,27 @@
       </div>
 
       <div id="connected" class="panel-body" hidden>
-        <div class="state-row">
+        <div class="state-row connected-row">
           <span class="state-indicator state-indicator-connected" aria-hidden="true">
             <svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8.25 3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
           <div class="state-copy">
             <strong>Connected to Flare</strong>
-            <p>The Flare button on Laravel Cloud opens the matching project when one is found.</p>
+            <p>Matching projects link to Errors, Performance, and Logs.</p>
           </div>
-        </div>
-        <div class="info-row">
-          <span class="info-label">Project matching</span>
-          <p>Exact allowed domain, then exact project name or slug. If there is no unique match, the button opens Flare.</p>
-        </div>
-        <div class="panel-actions">
           <button class="secondary" id="disconnect" type="button">Disconnect</button>
         </div>
+      </div>
+
+      <div class="preference-row" id="display-options" hidden>
+        <div>
+          <h2 id="hide-unmatched-label">Hide the button for projects without Flare</h2>
+          <p>Matched projects still show the Flare button.</p>
+        </div>
+        <label class="switch">
+          <input id="hide-unmatched-action" type="checkbox" aria-labelledby="hide-unmatched-label">
+          <span class="switch-track" aria-hidden="true"></span>
+        </label>
       </div>
 
       <p class="error" id="error" role="alert" hidden></p>

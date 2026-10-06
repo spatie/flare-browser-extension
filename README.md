@@ -6,6 +6,8 @@ Adds a Flare button immediately to the right of **Deploy** on Laravel Cloud. Con
 
 The connection uses Flare's read-only OAuth device flow. The extension stores the access and refresh tokens in browser extension storage, keeps them out of the Laravel Cloud page, and revokes them when you disconnect. Flare matches an exact allowed domain first, then an exact project name or slug.
 
+The settings screen includes an option to hide **Set up Flare** on Laravel Cloud projects with no matching Flare project. Matched projects still show the Flare button.
+
 ## Install in Chrome locally
 
 1. [Download the repository as a ZIP](https://github.com/spatie/flare-browser-extension/archive/refs/heads/main.zip) and unzip it. Keep the unzipped folder in a permanent location.

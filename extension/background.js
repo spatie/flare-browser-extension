@@ -33,6 +33,11 @@ extensionApi.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true;
   }
 
+  if (message?.type === "flare-display-options" && fromCloud) {
+    displayOptions().then(sendResponse, errorResponse);
+    return true;
+  }
+
   if (!fromSettings) return;
 
   const actions = {
@@ -40,6 +45,8 @@ extensionApi.runtime.onMessage.addListener((message, sender, sendResponse) => {
     "flare-connect": startAuthorization,
     "flare-poll": pollAuthorization,
     "flare-disconnect": disconnect,
+    "flare-display-options": displayOptions,
+    "flare-set-display-options": () => setDisplayOptions(message.hideUnmatchedAction),
   };
   const action = actions[message?.type];
   if (!action) return;
@@ -66,6 +73,25 @@ async function broadcastConnectionChanged() {
   const tabs = await extensionApi.tabs.query({});
   await Promise.all(tabs.filter((tab) => tab.id).map((tab) =>
     Promise.resolve(extensionApi.tabs.sendMessage(tab.id, { type: "flare-connection-changed" })).catch(() => {})
+  ));
+}
+
+async function displayOptions() {
+  const { hideUnmatchedAction } = await extensionApi.storage.local.get("hideUnmatchedAction");
+  return { hideUnmatchedAction: hideUnmatchedAction === true };
+}
+
+async function setDisplayOptions(hideUnmatchedAction) {
+  if (typeof hideUnmatchedAction !== "boolean") throw new Error("Invalid display option.");
+  await extensionApi.storage.local.set({ hideUnmatchedAction });
+  await broadcastDisplayOptionsChanged(hideUnmatchedAction).catch(() => {});
+  return { hideUnmatchedAction };
+}
+
+async function broadcastDisplayOptionsChanged(hideUnmatchedAction) {
+  const tabs = await extensionApi.tabs.query({});
+  await Promise.all(tabs.filter((tab) => tab.id).map((tab) =>
+    Promise.resolve(extensionApi.tabs.sendMessage(tab.id, { type: "flare-display-options-changed", hideUnmatchedAction })).catch(() => {})
   ));
 }
 

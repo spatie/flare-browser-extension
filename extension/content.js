@@ -32,6 +32,7 @@
   let resolveGeneration = 0;
   let retryTimer;
   let view = { kind: "loading" };
+  let hideUnmatchedAction = false;
   let activeMenu;
   const instances = new WeakMap();
 
@@ -135,6 +136,9 @@
   }
 
   function render(instance) {
+    const hidden = hideUnmatchedAction && view.kind === "setup";
+    if (hidden && activeMenu === instance) closeMenu();
+    instance.wrap.hidden = hidden;
     const key = `${view.kind}:${view.errorsUrl || ""}:${view.performanceUrl || ""}:${view.logsUrl || ""}`;
     if (instance.wrap.dataset.renderKey === key) return;
     if (activeMenu === instance) closeMenu();
@@ -307,10 +311,20 @@
   window.addEventListener("scroll", () => closeMenu(), true);
   window.addEventListener("resize", queueUpdate);
   extensionApi.runtime.onMessage.addListener((message) => {
-    if (message?.type !== "flare-connection-changed") return;
-    resolvedProject = undefined;
-    resolveProject();
+    if (message?.type === "flare-connection-changed") {
+      resolvedProject = undefined;
+      resolveProject();
+    }
+    if (message?.type === "flare-display-options-changed") {
+      hideUnmatchedAction = message.hideUnmatchedAction === true;
+      renderAll();
+    }
   });
+
+  extensionApi.runtime.sendMessage({ type: "flare-display-options" }).then((options) => {
+    hideUnmatchedAction = options?.hideUnmatchedAction === true;
+    renderAll();
+  }).catch(() => {});
 
   addActions();
   resolveProject();
