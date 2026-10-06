@@ -33,11 +33,34 @@
         <p class="intro">Open Flare directly from your Laravel Cloud projects.</p>
       </div>
 
+      <section class="access" aria-labelledby="access-heading">
+        <div class="access-heading">
+          <h2 id="access-heading">How Flare works here</h2>
+          <p>The extension works on two websites. Your browser asks you to allow access to each one.</p>
+        </div>
+        <div class="access-site">
+          <div class="access-site-copy">
+            <strong>cloud.laravel.com</strong>
+            <p>Reads the project name from the page and adds the Flare button beside Deploy.</p>
+          </div>
+          <button class="secondary access-button" id="allow-cloud" type="button" hidden>Allow access</button>
+          <span class="access-allowed" id="cloud-allowed" hidden>Allowed</span>
+        </div>
+        <div class="access-site">
+          <div class="access-site-copy">
+            <strong>flareapp.io</strong>
+            <p>Connects your account and finds the matching project's Errors, Performance, and Logs pages.</p>
+          </div>
+          <span class="access-allowed" id="flare-allowed" hidden>Allowed</span>
+        </div>
+        <p class="access-note">Flare does not read your application code or Laravel Cloud credentials. You can change either website's access in your browser settings.</p>
+      </section>
+
       <div id="disconnected" class="panel-body" hidden>
         <div class="state-row">
           <div class="state-copy">
             <strong>Connect your Flare account</strong>
-            <p>Allow access to flareapp.io to sign in and find your projects. Safari may ask you to approve this site.</p>
+            <p>Your browser may ask you to allow flareapp.io, then Flare will ask you to approve the connection.</p>
           </div>
         </div>
         <div class="panel-actions">

@@ -2,6 +2,18 @@ const extensionApi = globalThis.browser || globalThis.chrome;
 const $ = (id) => document.getElementById(id);
 let pending;
 let pollTimer;
+const cloudAccess = { origins: ["https://cloud.laravel.com/*"] };
+const flareAccess = { origins: ["https://flareapp.io/*"] };
+
+async function refreshAccess() {
+  const [cloudAllowed, flareAllowed] = await Promise.all([
+    extensionApi.permissions.contains(cloudAccess),
+    extensionApi.permissions.contains(flareAccess),
+  ]);
+  $("allow-cloud").hidden = cloudAllowed;
+  $("cloud-allowed").hidden = !cloudAllowed;
+  $("flare-allowed").hidden = !flareAllowed;
+}
 
 function show(view) {
   for (const id of ["disconnected", "pending", "connected"]) $(id).hidden = id !== view;
@@ -64,15 +76,37 @@ $("connect").addEventListener("click", async () => {
   $("connect").disabled = true;
   error("");
   try {
-    const flareAccess = { origins: ["https://flareapp.io/*"] };
     const granted = await extensionApi.permissions.request(flareAccess);
     if (!granted) throw new Error("Allow access to flareapp.io to connect your account.");
+    await refreshAccess();
     showPending(await send("flare-connect"));
     $("open-flare").click();
   } catch (caught) {
     error(caught.message);
   } finally {
     $("connect").disabled = false;
+  }
+});
+
+$("allow-cloud").addEventListener("click", async () => {
+  $("allow-cloud").disabled = true;
+  error("");
+  try {
+    const granted = await extensionApi.permissions.request(cloudAccess);
+    if (!granted) throw new Error("Allow access to cloud.laravel.com to show the Flare button on project pages.");
+    await refreshAccess();
+    try {
+      const tabs = await extensionApi.tabs.query({ url: "https://cloud.laravel.com/*" });
+      for (const tab of tabs) {
+        if (tab.id) await extensionApi.tabs.reload(tab.id);
+      }
+    } catch {
+      // The permission still applies when the user next opens Laravel Cloud.
+    }
+  } catch (caught) {
+    error(caught.message);
+  } finally {
+    $("allow-cloud").disabled = false;
   }
 });
 
@@ -122,6 +156,10 @@ send("flare-display-options").then((options) => {
   $("hide-unmatched-action").checked = options.hideUnmatchedAction;
   $("display-options").hidden = false;
 }).catch((caught) => error(caught.message));
+
+refreshAccess().catch((caught) => error(caught.message));
+extensionApi.permissions.onAdded?.addListener(() => refreshAccess().catch(() => {}));
+extensionApi.permissions.onRemoved?.addListener(() => refreshAccess().catch(() => {}));
 
 send("flare-status").then((state) => {
   if (state.connected) show("connected");

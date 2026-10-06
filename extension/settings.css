@@ -58,6 +58,16 @@ body { min-height: 100vh; margin: 0; background: var(--canvas); }
 .switch input:checked + .switch-track::after { transform: translateX(18px); }
 .switch input:focus-visible + .switch-track { box-shadow: 0 0 0 3px rgba(109, 40, 217, .18); }
 .panel-heading { padding: 27px 34px 25px; }
+.access { border-top: 1px solid var(--line); padding: 23px 34px 21px; }
+.access-heading h2 { margin: 0 0 3px; font-size: 15px; font-weight: 700; line-height: 1.4; }
+.access-heading p, .access-note { margin: 0; color: var(--fg-secondary); font-size: 12px; line-height: 1.55; }
+.access-site { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.access-site-copy { min-width: 0; }
+.access-site-copy strong { display: block; margin-bottom: 2px; font-size: 13px; font-weight: 700; }
+.access-site-copy p { margin: 0; color: var(--fg-secondary); font-size: 12px; line-height: 1.5; }
+.access-button { flex: none; }
+.access-allowed { flex: none; color: #16865a; font-size: 12px; font-weight: 700; }
+.access-note { margin-top: 16px; }
 h1 { margin: 0 0 6px; font-family: Satoshi, sans-serif; font-size: 30px; font-weight: 700; line-height: 1.2; letter-spacing: -.035em; text-wrap: balance; }
 .intro { margin: 0; color: var(--fg-secondary); font-size: 14px; line-height: 1.6; text-wrap: pretty; }
 .panel-body { border-top: 1px solid var(--line); }
@@ -99,6 +109,8 @@ button:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
   .shell { width: min(100% - 28px, 680px); padding-top: 24px; }
   .masthead { margin-bottom: 18px; }
   .panel-heading { padding: 25px 24px; }
+  .access { padding: 23px 24px 20px; }
+  .access-site { align-items: flex-start; flex-direction: column; gap: 10px; }
   .state-row { padding: 22px 24px; }
   .connected-row { flex-wrap: wrap; }
   .connected-row .secondary { margin-left: 46px; }

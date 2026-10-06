@@ -6,7 +6,7 @@ Adds a Flare button immediately to the right of **Deploy** on Laravel Cloud. Con
 
 The connection uses Flare's read-only OAuth device flow. The extension stores the access and refresh tokens in browser extension storage, keeps them out of the Laravel Cloud page, and revokes them when you disconnect. Flare matches an exact allowed domain first, then an exact project name or slug.
 
-The settings screen includes an option to hide **Set up Flare** on Laravel Cloud projects with no matching Flare project. Matched projects still show the Flare button.
+The settings screen explains why the extension needs access to `cloud.laravel.com` and `flareapp.io`. If Laravel Cloud access is missing, choose **Allow access** there. **Connect to Flare** requests Flare access and starts the account connection. The settings also include an option to hide **Set up Flare** on Laravel Cloud projects with no matching Flare project. Matched projects still show the Flare button.
 
 ## Install in Chrome locally
 
@@ -30,7 +30,7 @@ Disable the unpacked development extension before installing the Web Store versi
 
 ## Safari on macOS
 
-Testers can install **Flare by Spatie** through a TestFlight invitation. The installed app and Safari extension are named **Flare**. Open the app first to see why Safari requests access to Laravel Cloud, then use its button to open **Safari Settings > Extensions**. Enable Flare and allow access to `cloud.laravel.com`. In Flare's extension settings, choose **Connect to Flare** and allow access to `flareapp.io` when Safari asks.
+Testers can install **Flare by Spatie** through a TestFlight invitation. The installed app and Safari extension are named **Flare**. Open the app first to see why Safari requests access to Laravel Cloud and Flare, then use its button to open **Safari Settings > Extensions**. Enable Flare. In Flare's extension settings, allow access to `cloud.laravel.com` if needed, then choose **Connect to Flare** and allow access to `flareapp.io` when Safari asks. Safari controls the approval prompts, so the app cannot grant website access during installation.
 
 For local development, open `safari/Flare/Flare.xcodeproj` in Xcode, select the macOS app target, and run it.
 

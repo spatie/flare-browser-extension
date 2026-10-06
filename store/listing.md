@@ -24,13 +24,13 @@ Permission justifications:
 
 - `storage`: Keep the Flare OAuth connection and pending approval state on the user's device.
 - `https://flareapp.io/*` optional host access: Request OAuth tokens, match the current Laravel Cloud project, and revoke the connection after the user allows this site.
-- `https://cloud.laravel.com/*` content script: Read the project name from the page URL and add the Flare action beside Deploy.
+- `https://cloud.laravel.com/*` content script and optional host access: Read the project name from the page URL and add the Flare action beside Deploy. The settings screen can request access if it has not been granted.
 
 Remote code: None. The extension loads fonts and scripts from its own package and exchanges JSON with Flare.
 
 Data disclosure: The extension reads the Laravel Cloud project name from the URL and sends it to Flare for matching. It stores Flare OAuth tokens locally and sends them only to Flare. See [PRIVACY.md](../PRIVACY.md).
 
-Test instructions: Open the toolbar icon and choose Connect to Flare. Allow flareapp.io access, sign in or create a Flare account, and approve the device code. On a Laravel Cloud project page, allow cloud.laravel.com access. The main Flare button opens Errors for a matching project; the menu opens Performance and Logs. Without a match, Set up Flare opens the create-project dialog. Before connection, Connect Flare opens the extension settings.
+Test instructions: Open the toolbar icon to see why the extension requests access to cloud.laravel.com and flareapp.io. Allow cloud.laravel.com access if prompted. Choose Connect to Flare, allow flareapp.io access, sign in or create a Flare account, and approve the device code. The main Flare button opens Errors for a matching project; the menu opens Performance and Logs. Without a match, Set up Flare opens the create-project dialog. Before connection, Connect Flare opens the extension settings.
 
 Homepage: https://flareapp.io
 
