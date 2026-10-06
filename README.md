@@ -18,6 +18,8 @@ Run `python3 scripts/watch_extension.py uninstall` to stop the watcher. You can 
 
 For a Chrome Web Store release, run `python3 scripts/package_chrome.py`. The ZIP in `dist/` excludes the development reload script and its permissions. Upload that ZIP to the Chrome Web Store and choose **Unlisted** visibility. Store copy and privacy disclosures are drafted in [store/listing.md](store/listing.md) and [PRIVACY.md](PRIVACY.md). Store releases are reviewed and update installed copies through Chrome.
 
+Disable the unpacked development extension before installing the Web Store version in the same Chrome profile. Both copies would otherwise try to add the button to the same page.
+
 ## Safari on macOS
 
 Open `safari/Flare for Laravel Cloud/Flare for Laravel Cloud.xcodeproj` in Xcode, select the macOS app target, and run it. In Safari, enable the extension in **Settings > Extensions** and allow access to `cloud.laravel.com`.
