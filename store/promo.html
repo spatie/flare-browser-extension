@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flare for Laravel Cloud</title>
+<style>
+  @font-face { font-family: Inter; src: url(../extension/fonts/inter-latin.woff2); }
+  @font-face { font-family: Satoshi; src: url(../extension/fonts/satoshi-variable.woff2); }
+  * { box-sizing: border-box; }
+  html, body { width: 440px; height: 280px; margin: 0; }
+  body { overflow: hidden; background: #f7f8fa; color: #292a34; font-family: Inter, sans-serif; }
+  .card { position: relative; width: 100%; height: 100%; padding: 31px 34px; background: radial-gradient(circle at 100% 0%, #e4f6ec 0, transparent 42%), radial-gradient(circle at 8% 100%, #efeafa 0, transparent 43%), #fbfbfd; }
+  .brand { display: flex; align-items: center; gap: 12px; font-family: Satoshi, sans-serif; font-size: 24px; font-weight: 740; letter-spacing: -.035em; }
+  .brand svg { width: 22px; height: 33px; }
+  h1 { width: 360px; margin: 24px 0 0; font-family: Satoshi, sans-serif; font-size: 32px; font-weight: 690; letter-spacing: -.055em; line-height: 1.09; }
+  .actions { display: flex; align-items: center; gap: 9px; margin-top: 21px; }
+  .button { display: inline-flex; align-items: center; height: 34px; border: 1px solid #d2d3d9; border-radius: 7px; background: #fff; box-shadow: 0 1px 2px #1e1e260d; font-size: 13px; font-weight: 600; }
+  .deploy { padding: 0 16px; border-color: #1262e6; background: #1876f4; color: #fff; }
+  .flare { gap: 8px; padding: 0 13px; }
+  .flare svg { width: 13px; height: 20px; }
+  .chevron { align-self: stretch; display: grid; place-items: center; width: 30px; margin-left: 3px; border-left: 1px solid #e4e4e8; color: #777984; font-size: 12px; }
+</style>
+<div class="card">
+  <div class="brand">
+    <svg viewBox="0 0 42 64" fill="none" aria-hidden="true"><path fill="#27865b" d="M13.73 31.985 0 23.997V7.99l13.82 8.047-.088 15.948Z"/><path fill="#4bc78c" d="M27.46 23.968 0 7.99 13.73 0l27.52 15.977-13.79 7.99Z"/><path fill="#6840dc" d="M13.73 64 0 56.01V40.032l13.7 7.99L13.73 64Z"/><path fill="#a895f1" d="M13.7 48.023 0 40.033l13.73-8.017 13.76 8.017-13.79 7.99Z"/></svg>
+    Flare
+  </div>
+  <h1>Flare, right where you deploy.</h1>
+  <div class="actions">
+    <span class="button deploy">Deploy</span>
+    <span class="button flare"><svg viewBox="0 0 42 64" fill="none" aria-hidden="true"><path fill="#27865b" d="M13.73 31.985 0 23.997V7.99l13.82 8.047-.088 15.948Z"/><path fill="#4bc78c" d="M27.46 23.968 0 7.99 13.73 0l27.52 15.977-13.79 7.99Z"/><path fill="#6840dc" d="M13.73 64 0 56.01V40.032l13.7 7.99L13.73 64Z"/><path fill="#a895f1" d="M13.7 48.023 0 40.033l13.73-8.017 13.76 8.017-13.79 7.99Z"/></svg>Flare<span class="chevron">⌄</span></span>
+  </div>
+</div>

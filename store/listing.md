@@ -34,4 +34,4 @@ Homepage: https://flareapp.io
 
 Support: https://flareapp.io/support
 
-Privacy policy: Publish `PRIVACY.md` at a public URL before submitting the item.
+Privacy policy: https://github.com/spatie/flare-browser-extension/blob/main/PRIVACY.md
