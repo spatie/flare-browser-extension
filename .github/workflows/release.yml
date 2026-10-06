@@ -1,0 +1,115 @@
+name: Release browser extensions
+
+on:
+  workflow_dispatch:
+    inputs:
+      submit_chrome:
+        description: Submit the Chrome update for review after creating the GitHub release
+        type: boolean
+        required: true
+        default: false
+
+concurrency:
+  group: browser-extension-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: macos-latest
+    permissions:
+      contents: write
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Read version
+        id: version
+        run: |
+          version=$(python3 -c 'import json; print(json.load(open("extension/manifest.json"))["version"])')
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          if git rev-parse --verify --quiet "refs/tags/v$version"; then
+            echo "Version v$version already has a tag" >&2
+            exit 1
+          fi
+
+      - name: Build Chrome and Firefox packages
+        run: |
+          python3 scripts/package_chrome.py
+          python3 scripts/package_firefox.py
+
+      - name: Lint Firefox package
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/flare-firefox"
+          unzip -q "dist/flare-for-laravel-cloud-firefox-$VERSION.zip" -d "$RUNNER_TEMP/flare-firefox"
+          npx --yes web-ext@10.7.0 lint --source-dir "$RUNNER_TEMP/flare-firefox" --warnings-as-errors
+
+      - name: Build Safari extension
+        run: |
+          xcodebuild -quiet \
+            -project 'safari/Flare for Laravel Cloud/Flare for Laravel Cloud.xcodeproj' \
+            -scheme 'Flare for Laravel Cloud' \
+            -configuration Release \
+            -destination 'generic/platform=macOS' \
+            -derivedDataPath "$RUNNER_TEMP/flare-safari" \
+            CODE_SIGNING_ALLOWED=NO build
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          gh release create "v$VERSION" \
+            "dist/flare-for-laravel-cloud-chrome-$VERSION.zip" \
+            "dist/flare-for-laravel-cloud-firefox-$VERSION.zip" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "v$VERSION" \
+            --generate-notes
+
+  chrome-store:
+    if: inputs.submit_chrome
+    needs: release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Authenticate to Google
+        id: auth
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.CHROME_WEB_STORE_SERVICE_ACCOUNT }}
+          token_format: access_token
+          access_token_scopes: https://www.googleapis.com/auth/chromewebstore
+
+      - name: Download Chrome package
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ needs.release.outputs.version }}
+        run: |
+          mkdir -p dist
+          gh release download "v$VERSION" \
+            --repo "$GITHUB_REPOSITORY" \
+            --pattern "flare-for-laravel-cloud-chrome-$VERSION.zip" \
+            --dir dist
+
+      - name: Submit Chrome update
+        env:
+          VERSION: ${{ needs.release.outputs.version }}
+          CHROME_WEB_STORE_ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
+          CHROME_WEB_STORE_PUBLISHER_ID: ${{ vars.CHROME_WEB_STORE_PUBLISHER_ID }}
+          CHROME_WEB_STORE_ITEM_ID: ${{ vars.CHROME_WEB_STORE_ITEM_ID }}
+        run: python3 scripts/publish_chrome_store.py "dist/flare-for-laravel-cloud-chrome-$VERSION.zip"

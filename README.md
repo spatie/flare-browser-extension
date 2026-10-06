@@ -33,3 +33,26 @@ Disable the unpacked development extension before installing the Web Store versi
 Open `safari/Flare for Laravel Cloud/Flare for Laravel Cloud.xcodeproj` in Xcode, select the macOS app target, and run it. In Safari, enable the extension in **Settings > Extensions** and allow access to `cloud.laravel.com`.
 
 The Safari Xcode project references the files in `extension`, so changes to the shared extension source can be rebuilt in Xcode.
+
+## Firefox
+
+Run `python3 scripts/package_firefox.py` to build a Firefox add-on ZIP in `dist/`. For local testing, open `about:debugging` in Firefox, choose **This Firefox**, then **Load Temporary Add-on** and select the ZIP. Firefox removes temporary add-ons when it restarts. Regular installation requires [Mozilla signing](https://extensionworkshop.com/documentation/publish/signing-and-distribution-overview/).
+
+Chrome, Safari, and Firefox use the same interface and connection code in `extension/`. The Firefox package changes only the browser-specific manifest and omits the Chrome development reload script. After editing shared files, rebuild the Safari app and regenerate both browser store packages before distributing them.
+
+## Create a release
+
+Push the latest `extension/` changes to `main`, then run **Release browser extensions** under GitHub Actions. The workflow uses the version in `extension/manifest.json`, checks that it has not been tagged, builds Chrome and Firefox ZIPs, lints the Firefox package, checks that Safari builds, and creates a GitHub release with both ZIPs. The Safari build is a verification build, not a signed app for distribution.
+
+Leave **Submit Chrome update** off for the first Chrome Web Store release. Google requires the first item, its listing, and its unlisted visibility to be created in the developer dashboard. The API can then upload and submit later versions with the same visibility.
+
+To enable Chrome submissions from the workflow, enable the Chrome Web Store API in a Google Cloud project, create a service account, add its email under the publisher's **Settings > Service account**, and configure GitHub to impersonate it through [Workload Identity Federation](https://github.com/google-github-actions/auth/blob/main/docs/EXAMPLES.md#workload-identity-federation-through-a-service-account). Set these repository Actions variables:
+
+| Variable | Value |
+| --- | --- |
+| `CHROME_WEB_STORE_PUBLISHER_ID` | The publisher ID from the developer dashboard |
+| `CHROME_WEB_STORE_ITEM_ID` | The extension ID after its first dashboard upload |
+| `CHROME_WEB_STORE_SERVICE_ACCOUNT` | The linked service account email |
+| `GCP_WORKLOAD_IDENTITY_PROVIDER` | The full Google Cloud provider resource name |
+
+After the first unlisted Chrome release is published and these variables are configured, select **Submit Chrome update** when running the workflow. It uploads the new ZIP and submits it for review. Google publishes it after approval. The Firefox ZIP still needs Mozilla signing before it can be installed permanently.

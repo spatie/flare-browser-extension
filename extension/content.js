@@ -26,6 +26,11 @@
     settings: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 7v6M7 10h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
   };
 
+  function svg(source) {
+    const namespaced = source.replace("<svg ", '<svg xmlns="http://www.w3.org/2000/svg" ');
+    return document.importNode(new DOMParser().parseFromString(namespaced, "image/svg+xml").documentElement, true);
+  }
+
   let queued = false;
   let markId = 0;
   let resolvedProject;
@@ -97,8 +102,9 @@
         }
       });
     }
-    element.innerHTML = `${icons[item.icon]}<span></span>`;
-    element.querySelector("span").textContent = item.label;
+    const label = document.createElement("span");
+    label.textContent = item.label;
+    element.append(svg(icons[item.icon]), label);
     menu.append(element);
   }
 
@@ -181,7 +187,22 @@
     const uniqueMark = mark
       .replaceAll("url(#flare-extension-", `url(#${id}-`)
       .replaceAll('id="flare-extension-', `id="${id}-`);
-    wrap.innerHTML = `<span class="flare-extension-split"><a class="flare-extension-main">${uniqueMark}<span class="flare-extension-label"></span></a><button class="flare-extension-trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="${id}-menu">${chevron}</button></span>`;
+    const split = document.createElement("span");
+    split.className = "flare-extension-split";
+    const main = document.createElement("a");
+    main.className = "flare-extension-main";
+    const label = document.createElement("span");
+    label.className = "flare-extension-label";
+    main.append(svg(uniqueMark), label);
+    const trigger = document.createElement("button");
+    trigger.className = "flare-extension-trigger";
+    trigger.type = "button";
+    trigger.setAttribute("aria-haspopup", "menu");
+    trigger.setAttribute("aria-expanded", "false");
+    trigger.setAttribute("aria-controls", `${id}-menu`);
+    trigger.append(svg(chevron));
+    split.append(main, trigger);
+    wrap.append(split);
     const menu = document.createElement("div");
     menu.className = menuClass;
     menu.id = `${id}-menu`;
