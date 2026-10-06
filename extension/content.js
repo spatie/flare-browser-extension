@@ -18,7 +18,6 @@
       </defs>
     </svg>`;
   const chevron = '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  const arrow = '<svg class="flare-extension-menu-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
   const icons = {
     errors: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M10 6v4m0 3h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
     performance: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 14.5a7 7 0 1 1 14 0M10 13l3.5-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
@@ -64,13 +63,13 @@
     instance.menu.style.left = `${Math.round(left)}px`;
   }
 
-  function openMenu(instance) {
+  function openMenu(instance, focusFirst = false) {
     closeMenu();
     instance.menu.hidden = false;
     instance.trigger.setAttribute("aria-expanded", "true");
     activeMenu = instance;
     positionMenu(instance);
-    instance.menu.querySelector('[role="menuitem"]')?.focus();
+    if (focusFirst) instance.menu.querySelector('[role="menuitem"]')?.focus();
   }
 
   function openSettings() {
@@ -96,7 +95,7 @@
         }
       });
     }
-    element.innerHTML = `${icons[item.icon]}<span></span>${item.href ? arrow : ""}`;
+    element.innerHTML = `${icons[item.icon]}<span></span>`;
     element.querySelector("span").textContent = item.label;
     menu.append(element);
   }
@@ -198,14 +197,14 @@
       event.preventDefault();
       openSettings();
     });
-    instance.trigger.addEventListener("click", () => {
+    instance.trigger.addEventListener("click", (event) => {
       if (activeMenu === instance) closeMenu();
-      else openMenu(instance);
+      else openMenu(instance, event.detail === 0);
     });
     instance.trigger.addEventListener("keydown", (event) => {
       if (event.key !== "ArrowDown") return;
       event.preventDefault();
-      openMenu(instance);
+      openMenu(instance, true);
     });
     menu.addEventListener("keydown", (event) => {
       const items = [...menu.querySelectorAll('[role="menuitem"]')];
