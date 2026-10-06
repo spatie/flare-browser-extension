@@ -36,6 +36,8 @@ For local development, open `safari/Flare/Flare.xcodeproj` in Xcode, select the 
 
 The Safari Xcode project references the files in `extension`, so changes to the shared extension source can be rebuilt in Xcode.
 
+After a local `xcodebuild archive`, unregister the copy staged inside Xcode's archive intermediates with `pluginkit -r /path/to/ArchiveIntermediates/Flare/InstallationBuildProductsLocation/Applications/Flare.app/Contents/PlugIns/Flare\ Extension.appex`. Check `pluginkit -m -A -D -v -p com.apple.Safari.web-extension` afterward. It should list only the installed `/Applications/Flare.app` copy. A second registered copy can make Safari's content script and background process come from different builds, leaving the project lookup waiting indefinitely.
+
 ## Firefox
 
 Run `python3 scripts/package_firefox.py` to build a Firefox add-on ZIP in `dist/`. For local testing, open `about:debugging` in Firefox, choose **This Firefox**, then **Load Temporary Add-on** and select the ZIP. Firefox removes temporary add-ons when it restarts. Regular installation requires [Mozilla signing](https://extensionworkshop.com/documentation/publish/signing-and-distribution-overview/).
