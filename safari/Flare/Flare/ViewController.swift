@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  Flare for Laravel Cloud
+//  Flare
 //
 //  Created by freek on 06/10/2026.
 //
@@ -9,7 +9,7 @@ import Cocoa
 import SafariServices
 import WebKit
 
-let extensionBundleIdentifier = "be.spatie.flare-laravel-cloud.Extension"
+let extensionBundleIdentifier = "be.spatie.flare.Extension"
 
 class ViewController: NSViewController, WKNavigationDelegate, WKScriptMessageHandler {
 

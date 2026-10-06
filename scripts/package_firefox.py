@@ -14,7 +14,7 @@ def package():
     manifest["background"] = {"scripts": ["background.js"]}
     manifest["browser_specific_settings"] = {
         "gecko": {
-            "id": "laravel-cloud@flareapp.io",
+            "id": "extension@flareapp.io",
             "strict_min_version": "140.0",
             "data_collection_permissions": {
                 "required": ["authenticationInfo", "browsingActivity"],
@@ -24,7 +24,7 @@ def package():
     }
 
     version = manifest["version"]
-    destination = ROOT / "dist" / f"flare-for-laravel-cloud-firefox-{version}.zip"
+    destination = ROOT / "dist" / f"flare-firefox-{version}.zip"
     destination.parent.mkdir(exist_ok=True)
 
     background = (SOURCE / "background.js").read_text()

@@ -15,7 +15,7 @@
 		9582F4643074C80E00E5A2EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9582F4633074C80E00E5A2EF /* ViewController.swift */; };
 		9582F4673074C80E00E5A2EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4653074C80E00E5A2EF /* Main.storyboard */; };
 		9582F4693074C80F00E5A2EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4683074C80F00E5A2EF /* Assets.xcassets */; };
-		9582F4703074C80F00E5A2EF /* Flare for Laravel Cloud Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9582F46F3074C80F00E5A2EF /* Flare for Laravel Cloud Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9582F4703074C80F00E5A2EF /* Flare Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9582F46F3074C80F00E5A2EF /* Flare Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9582F4753074C80F00E5A2EF /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9582F4743074C80F00E5A2EF /* SafariWebExtensionHandler.swift */; };
 		9582F48B3074C80F00E5A2EF /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4813074C80F00E5A2EF /* styles.css */; };
 		9582F48C3074C80F00E5A2EF /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 9582F4823074C80F00E5A2EF /* background.js */; };
@@ -35,7 +35,7 @@
 			containerPortal = 9582F44C3074C80E00E5A2EF /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 9582F46E3074C80F00E5A2EF;
-			remoteInfo = "Flare for Laravel Cloud Extension";
+			remoteInfo = "Flare Extension";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -45,14 +45,14 @@
 			dstPath = "";
 			dstSubfolder = PlugIns;
 			files = (
-				9582F4703074C80F00E5A2EF /* Flare for Laravel Cloud Extension.appex in Embed Foundation Extensions */,
+				9582F4703074C80F00E5A2EF /* Flare Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9582F4543074C80E00E5A2EF /* Flare for Laravel Cloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flare for Laravel Cloud.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9582F4543074C80E00E5A2EF /* Flare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flare.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9582F4573074C80E00E5A2EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9582F45B3074C80E00E5A2EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
 		9582F45D3074C80E00E5A2EF /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 		9582F4663074C80E00E5A2EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9582F4683074C80F00E5A2EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9582F46A3074C80F00E5A2EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9582F46F3074C80F00E5A2EF /* Flare for Laravel Cloud Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Flare for Laravel Cloud Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9582F46F3074C80F00E5A2EF /* Flare Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Flare Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9582F4743074C80F00E5A2EF /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
 		9582F4763074C80F00E5A2EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9582F4813074C80F00E5A2EF /* styles.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = styles.css; path = ../../../extension/styles.css; sourceTree = "<group>"; };
@@ -94,8 +94,8 @@
 		9582F44B3074C80E00E5A2EF = {
 			isa = PBXGroup;
 			children = (
-				9582F4563074C80E00E5A2EF /* Flare for Laravel Cloud */,
-				9582F4733074C80F00E5A2EF /* Flare for Laravel Cloud Extension */,
+				9582F4563074C80E00E5A2EF /* Flare */,
+				9582F4733074C80F00E5A2EF /* Flare Extension */,
 				9582F4553074C80E00E5A2EF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,13 +103,13 @@
 		9582F4553074C80E00E5A2EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9582F4543074C80E00E5A2EF /* Flare for Laravel Cloud.app */,
-				9582F46F3074C80F00E5A2EF /* Flare for Laravel Cloud Extension.appex */,
+				9582F4543074C80E00E5A2EF /* Flare.app */,
+				9582F46F3074C80F00E5A2EF /* Flare Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9582F4563074C80E00E5A2EF /* Flare for Laravel Cloud */ = {
+		9582F4563074C80E00E5A2EF /* Flare */ = {
 			isa = PBXGroup;
 			children = (
 				9582F4573074C80E00E5A2EF /* AppDelegate.swift */,
@@ -119,7 +119,7 @@
 				9582F46A3074C80F00E5A2EF /* Info.plist */,
 				9582F4593074C80E00E5A2EF /* Resources */,
 			);
-			path = "Flare for Laravel Cloud";
+			path = "Flare";
 			sourceTree = "<group>";
 		};
 		9582F4593074C80E00E5A2EF /* Resources */ = {
@@ -133,14 +133,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		9582F4733074C80F00E5A2EF /* Flare for Laravel Cloud Extension */ = {
+		9582F4733074C80F00E5A2EF /* Flare Extension */ = {
 			isa = PBXGroup;
 			children = (
 				9582F4803074C80F00E5A2EF /* Resources */,
 				9582F4743074C80F00E5A2EF /* SafariWebExtensionHandler.swift */,
 				9582F4763074C80F00E5A2EF /* Info.plist */,
 			);
-			path = "Flare for Laravel Cloud Extension";
+			path = "Flare Extension";
 			sourceTree = "<group>";
 		};
 		9582F4803074C80F00E5A2EF /* Resources */ = {
@@ -158,15 +158,15 @@
 				9582F48A3074C80F00E5A2EF /* settings.js */,
 			);
 			name = Resources;
-			path = "Flare for Laravel Cloud Extension";
+			path = "Flare Extension";
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9582F4533074C80E00E5A2EF /* Flare for Laravel Cloud */ = {
+		9582F4533074C80E00E5A2EF /* Flare */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9582F47D3074C80F00E5A2EF /* Build configuration list for PBXNativeTarget "Flare for Laravel Cloud" */;
+			buildConfigurationList = 9582F47D3074C80F00E5A2EF /* Build configuration list for PBXNativeTarget "Flare" */;
 			buildPhases = (
 				9582F4503074C80E00E5A2EF /* Sources */,
 				9582F4513074C80E00E5A2EF /* Frameworks */,
@@ -178,14 +178,14 @@
 			dependencies = (
 				9582F4723074C80F00E5A2EF /* PBXTargetDependency */,
 			);
-			name = "Flare for Laravel Cloud";
-			productName = "Flare for Laravel Cloud";
-			productReference = 9582F4543074C80E00E5A2EF /* Flare for Laravel Cloud.app */;
+			name = "Flare";
+			productName = "Flare";
+			productReference = 9582F4543074C80E00E5A2EF /* Flare.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9582F46E3074C80F00E5A2EF /* Flare for Laravel Cloud Extension */ = {
+		9582F46E3074C80F00E5A2EF /* Flare Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9582F4793074C80F00E5A2EF /* Build configuration list for PBXNativeTarget "Flare for Laravel Cloud Extension" */;
+			buildConfigurationList = 9582F4793074C80F00E5A2EF /* Build configuration list for PBXNativeTarget "Flare Extension" */;
 			buildPhases = (
 				9582F46B3074C80F00E5A2EF /* Sources */,
 				9582F46C3074C80F00E5A2EF /* Frameworks */,
@@ -193,9 +193,9 @@
 			);
 			buildRules = (
 			);
-			name = "Flare for Laravel Cloud Extension";
-			productName = "Flare for Laravel Cloud Extension";
-			productReference = 9582F46F3074C80F00E5A2EF /* Flare for Laravel Cloud Extension.appex */;
+			name = "Flare Extension";
+			productName = "Flare Extension";
+			productReference = 9582F46F3074C80F00E5A2EF /* Flare Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -216,7 +216,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9582F44F3074C80E00E5A2EF /* Build configuration list for PBXProject "Flare for Laravel Cloud" */;
+			buildConfigurationList = 9582F44F3074C80E00E5A2EF /* Build configuration list for PBXProject "Flare" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -230,8 +230,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9582F4533074C80E00E5A2EF /* Flare for Laravel Cloud */,
-				9582F46E3074C80F00E5A2EF /* Flare for Laravel Cloud Extension */,
+				9582F4533074C80E00E5A2EF /* Flare */,
+				9582F46E3074C80F00E5A2EF /* Flare Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -284,7 +284,7 @@
 /* Begin PBXTargetDependency section */
 		9582F4723074C80F00E5A2EF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9582F46E3074C80F00E5A2EF /* Flare for Laravel Cloud Extension */;
+			target = 9582F46E3074C80F00E5A2EF /* Flare Extension */;
 			targetProxy = 9582F4713074C80F00E5A2EF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -309,7 +309,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		9582F4773074C80F00E5A2EF /* Debug configuration for PBXProject "Flare for Laravel Cloud" */ = {
+		9582F4773074C80F00E5A2EF /* Debug configuration for PBXProject "Flare" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -372,7 +372,7 @@
 			};
 			name = Debug;
 		};
-		9582F4783074C80F00E5A2EF /* Release configuration for PBXProject "Flare for Laravel Cloud" */ = {
+		9582F4783074C80F00E5A2EF /* Release configuration for PBXProject "Flare" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -427,7 +427,7 @@
 			};
 			name = Release;
 		};
-		9582F47A3074C80F00E5A2EF /* Debug configuration for PBXNativeTarget "Flare for Laravel Cloud Extension" */ = {
+		9582F47A3074C80F00E5A2EF /* Debug configuration for PBXNativeTarget "Flare Extension" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -436,8 +436,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Flare for Laravel Cloud Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Flare for Laravel Cloud Extension";
+				INFOPLIST_FILE = "Flare Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Flare";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,7 +450,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "be.spatie.flare-laravel-cloud.Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.spatie.flare.Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -461,7 +461,7 @@
 			};
 			name = Debug;
 		};
-		9582F47B3074C80F00E5A2EF /* Release configuration for PBXNativeTarget "Flare for Laravel Cloud Extension" */ = {
+		9582F47B3074C80F00E5A2EF /* Release configuration for PBXNativeTarget "Flare Extension" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -470,8 +470,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Flare for Laravel Cloud Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Flare for Laravel Cloud Extension";
+				INFOPLIST_FILE = "Flare Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Flare";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -484,7 +484,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "be.spatie.flare-laravel-cloud.Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.spatie.flare.Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -495,7 +495,7 @@
 			};
 			name = Release;
 		};
-		9582F47E3074C80F00E5A2EF /* Debug configuration for PBXNativeTarget "Flare for Laravel Cloud" */ = {
+		9582F47E3074C80F00E5A2EF /* Debug configuration for PBXNativeTarget "Flare" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -508,8 +508,8 @@
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Flare for Laravel Cloud/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Flare for Laravel Cloud";
+				INFOPLIST_FILE = "Flare/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Flare";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -525,7 +525,7 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "be.spatie.flare-laravel-cloud";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.spatie.flare";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -537,7 +537,7 @@
 			};
 			name = Debug;
 		};
-		9582F47F3074C80F00E5A2EF /* Release configuration for PBXNativeTarget "Flare for Laravel Cloud" */ = {
+		9582F47F3074C80F00E5A2EF /* Release configuration for PBXNativeTarget "Flare" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -550,8 +550,8 @@
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Flare for Laravel Cloud/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Flare for Laravel Cloud";
+				INFOPLIST_FILE = "Flare/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Flare";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -567,7 +567,7 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "be.spatie.flare-laravel-cloud";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.spatie.flare";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -582,27 +582,27 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9582F44F3074C80E00E5A2EF /* Build configuration list for PBXProject "Flare for Laravel Cloud" */ = {
+		9582F44F3074C80E00E5A2EF /* Build configuration list for PBXProject "Flare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9582F4773074C80F00E5A2EF /* Debug configuration for PBXProject "Flare for Laravel Cloud" */,
-				9582F4783074C80F00E5A2EF /* Release configuration for PBXProject "Flare for Laravel Cloud" */,
+				9582F4773074C80F00E5A2EF /* Debug configuration for PBXProject "Flare" */,
+				9582F4783074C80F00E5A2EF /* Release configuration for PBXProject "Flare" */,
 			);
 			defaultConfigurationName = Release;
 		};
-		9582F4793074C80F00E5A2EF /* Build configuration list for PBXNativeTarget "Flare for Laravel Cloud Extension" */ = {
+		9582F4793074C80F00E5A2EF /* Build configuration list for PBXNativeTarget "Flare Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9582F47A3074C80F00E5A2EF /* Debug configuration for PBXNativeTarget "Flare for Laravel Cloud Extension" */,
-				9582F47B3074C80F00E5A2EF /* Release configuration for PBXNativeTarget "Flare for Laravel Cloud Extension" */,
+				9582F47A3074C80F00E5A2EF /* Debug configuration for PBXNativeTarget "Flare Extension" */,
+				9582F47B3074C80F00E5A2EF /* Release configuration for PBXNativeTarget "Flare Extension" */,
 			);
 			defaultConfigurationName = Release;
 		};
-		9582F47D3074C80F00E5A2EF /* Build configuration list for PBXNativeTarget "Flare for Laravel Cloud" */ = {
+		9582F47D3074C80F00E5A2EF /* Build configuration list for PBXNativeTarget "Flare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9582F47E3074C80F00E5A2EF /* Debug configuration for PBXNativeTarget "Flare for Laravel Cloud" */,
-				9582F47F3074C80F00E5A2EF /* Release configuration for PBXNativeTarget "Flare for Laravel Cloud" */,
+				9582F47E3074C80F00E5A2EF /* Debug configuration for PBXNativeTarget "Flare" */,
+				9582F47F3074C80F00E5A2EF /* Release configuration for PBXNativeTarget "Flare" */,
 			);
 			defaultConfigurationName = Release;
 		};

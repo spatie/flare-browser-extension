@@ -1,4 +1,4 @@
-# Flare for Laravel Cloud privacy
+# Flare privacy
 
 This browser extension adds Flare links to Laravel Cloud project pages. It is provided by Facade BV, the company behind Flare.
 

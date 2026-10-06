@@ -22,7 +22,7 @@ def package():
     manifest.pop("web_accessible_resources", None)
 
     version = manifest["version"]
-    destination = ROOT / "dist" / f"flare-for-laravel-cloud-chrome-{version}.zip"
+    destination = ROOT / "dist" / f"flare-chrome-{version}.zip"
     destination.parent.mkdir(exist_ok=True)
 
     background = (SOURCE / "background.js").read_text()

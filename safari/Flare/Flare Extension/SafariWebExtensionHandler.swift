@@ -1,6 +1,6 @@
 //
 //  SafariWebExtensionHandler.swift
-//  Flare for Laravel Cloud Extension
+//  Flare Extension
 //
 //  Created by freek on 06/10/2026.
 //

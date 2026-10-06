@@ -1,4 +1,4 @@
-# Flare browser extension
+# Flare
 
 ![Flare button with Errors and Performance in Laravel Cloud](docs/flare-cloud-actions.png)
 
@@ -10,7 +10,7 @@ The settings screen includes an option to hide **Set up Flare** on Laravel Cloud
 
 ## Install in Chrome locally
 
-1. [Download the repository as a ZIP](https://github.com/spatie/flare-browser-extension/archive/refs/heads/main.zip) and unzip it. Keep the unzipped folder in a permanent location.
+1. [Download the repository as a ZIP](https://github.com/spatie/flare-extension/archive/refs/heads/main.zip) and unzip it. Keep the unzipped folder in a permanent location.
 2. Open `chrome://extensions` in Chrome and enable **Developer mode**.
 3. Click **Load unpacked** and select the `extension` folder inside the unzipped repository.
 4. Click the Flare toolbar icon, connect your Flare account, and approve the read-only connection on Flare.
@@ -30,7 +30,7 @@ Disable the unpacked development extension before installing the Web Store versi
 
 ## Safari on macOS
 
-Open `safari/Flare for Laravel Cloud/Flare for Laravel Cloud.xcodeproj` in Xcode, select the macOS app target, and run it. In Safari, enable the extension in **Settings > Extensions** and allow access to `cloud.laravel.com`.
+Open `safari/Flare/Flare.xcodeproj` in Xcode, select the macOS app target, and run it. In Safari, enable the extension in **Settings > Extensions** and allow access to `cloud.laravel.com`.
 
 The Safari Xcode project references the files in `extension`, so changes to the shared extension source can be rebuilt in Xcode.
 

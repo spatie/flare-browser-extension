@@ -2,7 +2,7 @@
 
 Visibility: Unlisted
 
-Name: Flare for Laravel Cloud
+Name: Flare
 
 Short description: Open your Flare errors and performance from Laravel Cloud.
 
@@ -34,4 +34,4 @@ Homepage: https://flareapp.io
 
 Support: https://flareapp.io/support
 
-Privacy policy: https://github.com/spatie/flare-browser-extension/blob/main/PRIVACY.md
+Privacy policy: https://github.com/spatie/flare-extension/blob/main/PRIVACY.md

@@ -42,7 +42,7 @@ def publish(package):
 
     with ZipFile(package) as archive:
         version = json.loads(archive.read("manifest.json"))["version"]
-    if package.name != f"flare-for-laravel-cloud-chrome-{version}.zip":
+    if package.name != f"flare-chrome-{version}.zip":
         raise SystemExit("Package filename and manifest version differ")
 
     item = f"publishers/{publisher_id}/items/{item_id}"

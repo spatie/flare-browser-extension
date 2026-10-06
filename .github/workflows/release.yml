@@ -50,14 +50,14 @@ jobs:
           VERSION: ${{ steps.version.outputs.version }}
         run: |
           mkdir -p "$RUNNER_TEMP/flare-firefox"
-          unzip -q "dist/flare-for-laravel-cloud-firefox-$VERSION.zip" -d "$RUNNER_TEMP/flare-firefox"
+          unzip -q "dist/flare-firefox-$VERSION.zip" -d "$RUNNER_TEMP/flare-firefox"
           npx --yes web-ext@10.7.0 lint --source-dir "$RUNNER_TEMP/flare-firefox" --warnings-as-errors
 
       - name: Build Safari extension
         run: |
           xcodebuild -quiet \
-            -project 'safari/Flare for Laravel Cloud/Flare for Laravel Cloud.xcodeproj' \
-            -scheme 'Flare for Laravel Cloud' \
+            -project 'safari/Flare/Flare.xcodeproj' \
+            -scheme 'Flare' \
             -configuration Release \
             -destination 'generic/platform=macOS' \
             -derivedDataPath "$RUNNER_TEMP/flare-safari" \
@@ -69,8 +69,8 @@ jobs:
           VERSION: ${{ steps.version.outputs.version }}
         run: |
           gh release create "v$VERSION" \
-            "dist/flare-for-laravel-cloud-chrome-$VERSION.zip" \
-            "dist/flare-for-laravel-cloud-firefox-$VERSION.zip" \
+            "dist/flare-chrome-$VERSION.zip" \
+            "dist/flare-firefox-$VERSION.zip" \
             --repo "$GITHUB_REPOSITORY" \
             --target "$GITHUB_SHA" \
             --title "v$VERSION" \
@@ -103,7 +103,7 @@ jobs:
           mkdir -p dist
           gh release download "v$VERSION" \
             --repo "$GITHUB_REPOSITORY" \
-            --pattern "flare-for-laravel-cloud-chrome-$VERSION.zip" \
+            --pattern "flare-chrome-$VERSION.zip" \
             --dir dist
 
       - name: Submit Chrome update
@@ -112,4 +112,4 @@ jobs:
           CHROME_WEB_STORE_ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
           CHROME_WEB_STORE_PUBLISHER_ID: ${{ vars.CHROME_WEB_STORE_PUBLISHER_ID }}
           CHROME_WEB_STORE_ITEM_ID: ${{ vars.CHROME_WEB_STORE_ITEM_ID }}
-        run: python3 scripts/publish_chrome_store.py "dist/flare-for-laravel-cloud-chrome-$VERSION.zip"
+        run: python3 scripts/publish_chrome_store.py "dist/flare-chrome-$VERSION.zip"

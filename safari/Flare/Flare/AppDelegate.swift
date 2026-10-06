@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Flare for Laravel Cloud
+//  Flare
 //
 //  Created by freek on 06/10/2026.
 //
