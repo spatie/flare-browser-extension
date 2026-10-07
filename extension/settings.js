@@ -2,6 +2,7 @@ const extensionApi = globalThis.browser || globalThis.chrome;
 const $ = (id) => document.getElementById(id);
 let pending;
 let pollTimer;
+let connectionRevision = 0;
 const cloudAccess = { origins: ["https://cloud.laravel.com/*"] };
 const flareAccess = { origins: ["https://flareapp.io/*"] };
 
@@ -31,10 +32,26 @@ async function send(type, payload = {}) {
 }
 
 function showPending(data) {
+  connectionRevision++;
   pending = data;
   $("user-code").textContent = data.user_code;
   show("pending");
   schedulePoll(1000);
+}
+
+function showConnected() {
+  connectionRevision++;
+  pending = null;
+  clearTimeout(pollTimer);
+  show("connected");
+  error("");
+}
+
+function showDisconnected() {
+  connectionRevision++;
+  pending = null;
+  clearTimeout(pollTimer);
+  show("disconnected");
 }
 
 function schedulePoll(delay) {
@@ -45,28 +62,26 @@ function schedulePoll(delay) {
 async function poll() {
   if (!pending) return;
   if (Date.now() >= pending.expires_at) {
-    pending = null;
-    show("disconnected");
+    showDisconnected();
     error("This connection request expired. Start again to get a new code.");
     return;
   }
 
   try {
     const result = await send("flare-poll");
+    if (!pending) return;
     if (result.state === "connected") {
-      pending = null;
-      show("connected");
-      error("");
+      showConnected();
       return;
     }
     if (result.state === "pending") {
       schedulePoll(Math.max(1000, result.next_poll_at - Date.now()));
       return;
     }
-    pending = null;
-    show("disconnected");
+    showDisconnected();
     error(result.error || "The connection request expired. Start again to get a new code.");
   } catch (caught) {
+    if (!pending) return;
     error(caught.message);
     schedulePoll(10_000);
   }
@@ -129,7 +144,7 @@ $("disconnect").addEventListener("click", async () => {
   error("");
   try {
     await send("flare-disconnect");
-    show("disconnected");
+    showDisconnected();
   } catch (caught) {
     error(caught.message);
   } finally {
@@ -161,11 +176,30 @@ refreshAccess().catch((caught) => error(caught.message));
 extensionApi.permissions.onAdded?.addListener(() => refreshAccess().catch(() => {}));
 extensionApi.permissions.onRemoved?.addListener(() => refreshAccess().catch(() => {}));
 
-send("flare-status").then((state) => {
-  if (state.connected) show("connected");
-  else if (state.pending) showPending(state.pending);
-  else show("disconnected");
-}).catch((caught) => {
-  show("disconnected");
-  error(caught.message);
+async function refreshConnection() {
+  const revision = connectionRevision;
+  try {
+    const state = await send("flare-status");
+    if (revision !== connectionRevision) return;
+    if (state.connected) {
+      showConnected();
+    } else if (state.pending) {
+      showPending(state.pending);
+    } else {
+      showDisconnected();
+    }
+  } catch (caught) {
+    error(caught.message);
+  }
+}
+
+extensionApi.storage.onChanged?.addListener((changes, area) => {
+  if (area === "local" && changes.tokens?.newValue?.refresh_token) showConnected();
 });
+
+window.addEventListener("focus", refreshConnection);
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) refreshConnection();
+});
+
+refreshConnection();

@@ -162,7 +162,7 @@ async function pollAuthorization() {
     await extensionApi.storage.local.set({ tokens: tokenRecord(result.body) });
     await extensionApi.storage.local.remove("pending");
     matchCache.clear();
-    await broadcastConnectionChanged().catch(() => {});
+    broadcastConnectionChanged().catch(() => {});
     return { state: "connected" };
   }
 
