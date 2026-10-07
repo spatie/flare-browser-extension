@@ -40,7 +40,9 @@ After a local `xcodebuild archive`, unregister the copy staged inside Xcode's ar
 
 ## Firefox
 
-Run `python3 scripts/package_firefox.py` to build a Firefox add-on ZIP in `dist/`. For local testing, open `about:debugging` in Firefox, choose **This Firefox**, then **Load Temporary Add-on** and select the ZIP. Firefox removes temporary add-ons when it restarts. Regular installation requires [Mozilla signing](https://extensionworkshop.com/documentation/publish/signing-and-distribution-overview/).
+Run `python3 scripts/package_firefox.py` to build a Firefox add-on ZIP in `dist/`. For local testing, open `about:debugging` in Firefox, choose **This Firefox**, then **Load Temporary Add-on** and select the ZIP. Firefox removes temporary add-ons when it restarts. Once Mozilla publishes a signed version, install it from [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/flare-by-spatie/) for automatic updates.
+
+Run `python3 scripts/package_firefox_source.py` to build the matching source archive required by Mozilla reviewers. It contains the shared source, packaging scripts, and build instructions.
 
 Chrome, Safari, and Firefox use the same interface and connection code in `extension/`. The Firefox package changes only the browser-specific manifest and omits the Chrome development reload script. After editing shared files, rebuild the Safari app and regenerate both browser store packages before distributing them.
 

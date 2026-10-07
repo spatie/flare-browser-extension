@@ -4,7 +4,9 @@ Package: `dist/flare-firefox-0.1.48.zip`
 
 Name: Flare
 
-Summary: Open a Laravel Cloud project's Flare errors, performance, and logs in one click.
+Listing URL: https://addons.mozilla.org/en-US/firefox/addon/flare-by-spatie/
+
+Summary: Quick access to Flare errors, performance, and logs.
 
 Description:
 

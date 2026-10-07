@@ -44,6 +44,7 @@ jobs:
         run: |
           python3 scripts/package_chrome.py
           python3 scripts/package_firefox.py
+          python3 scripts/package_firefox_source.py
 
       - name: Lint Firefox package
         env:
@@ -71,6 +72,7 @@ jobs:
           gh release create "v$VERSION" \
             "dist/flare-chrome-$VERSION.zip" \
             "dist/flare-firefox-$VERSION.zip" \
+            "dist/flare-firefox-source-$VERSION.zip" \
             --repo "$GITHUB_REPOSITORY" \
             --target "$GITHUB_SHA" \
             --title "v$VERSION" \

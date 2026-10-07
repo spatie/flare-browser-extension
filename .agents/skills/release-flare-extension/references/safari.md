@@ -1,0 +1,9 @@
+# Safari and the Mac App Store
+
+The macOS Xcode project is `safari/Flare/Flare.xcodeproj`; its bundle is `be.spatie.flare`. `xcodebuild` embeds the shared `extension/` files. The GitHub workflow runs an unsigned compile check. A TestFlight update needs a separately signed archive, a new app build number, App Store Connect upload, processing, and assignment to tester groups. Inspect the current build number and TestFlight status rather than reusing a number from this file.
+
+Archive and export with the Spatie Apple team configured in Xcode. Retrieve the App Store Connect API credential from the Spatie 1Password item named `Ray - Apple - App Store Connect API` only when needed, use it for the upload, and remove any temporary key file afterward. Keep credentials out of the repository and logs.
+
+After a local archive, unregister the staged app extension from Xcode's `ArchiveIntermediates/.../InstallationBuildProductsLocation/Applications/Flare.app/Contents/PlugIns/Flare Extension.appex` with `pluginkit -r`. Run `pluginkit -m -A -D -v -p com.apple.Safari.web-extension` and ensure only the installed `/Applications/Flare.app` copy is registered. Two copies can make Safari load content and background scripts from different builds and leave the Flare button waiting for a project match.
+
+In [App Store Connect](https://appstoreconnect.apple.com/), distinguish the internal **Spatie** TestFlight group from the external **Colleagues** group. Verify the uploaded build is processed and assigned to the intended group. External builds may need Apple's beta review. The [public TestFlight invitation](https://testflight.apple.com/join/krwnnFgj) points to the external group; a live invitation page does not prove its latest build is available. Verify the installed app's `CFBundleVersion` and embedded manifest version when testing locally. A public Mac App Store release is a separate distribution submission from TestFlight.
